@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {StorageService} from "../../services/storage.service";
+import { UserService } from "src/services/user.service";
+import { User } from 'src/models/User';
 
 @Component({
   selector: 'app-test',
@@ -7,25 +8,21 @@ import {StorageService} from "../../services/storage.service";
   styleUrls: ['./test.page.scss'],
 })
 export class TestPage implements OnInit {
+  user: User;
 
-  constructor(private storageService: StorageService) {
-    this.testString = ""
+  constructor(private userService: UserService) {
+    this.user = new User('', '');
   }
-
-  testString: string;
 
   async ngOnInit() {
     await this.loadNameFromStorage()
   }
 
   async saveNameToStorage() {
-    // set a key/value
-    await this.storageService.set('name', this.testString);
+    await this.userService.setUser(this.user);
   }
 
   async loadNameFromStorage() {
-    // Or to get a key/value pair
-    this.testString = await this.storageService.get('name');
+    this.user = await this.userService.getUser();
   }
-
 }

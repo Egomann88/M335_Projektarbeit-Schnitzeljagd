@@ -10,14 +10,17 @@ import { AppComponent } from './app.component';
 import { AlertService } from '../services/AlertService';
 
 @NgModule({
+  // components
   declarations: [AppComponent],
+  // moudles
   imports: [
     BrowserModule,
     IonicModule.forRoot(),
     AppRoutingModule,
-    IonicStorageModule.forRoot()
+    IonicStorageModule.forRoot(),
   ],
+  // services?
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }, AlertService],
   bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule { }
