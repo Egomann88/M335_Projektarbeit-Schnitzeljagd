@@ -13,7 +13,10 @@
 <ion-content [fullscreen]="true">
   <!-- https://stackoverflow.com/questions/43006550/how-can-i-use-ngif-else -->
   <ion-list *ngIf="scavengerHunts.length > 0; else noHunts">
-    <ion-item *ngFor="let scavengerHunt of scavengerHunts">
+    <ion-item *ngFor="let scavengerHunt of scavengerHunts; let i = index">
+      <h2 class="ranking" [ngClass]="{'rankingFirst': i === 0, 'rankingSecond': i === 1, 'rankingThird': i === 2}">
+        {{ i + 1 }}.
+      </h2>
       <ion-label>
         <h3>
           Schnitzeljagd von
