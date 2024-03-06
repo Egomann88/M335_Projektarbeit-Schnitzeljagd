@@ -25,6 +25,7 @@
     "@capacitor/app": "5.0.7",
     "@capacitor/camera": "^5.0.9",
     "@capacitor/core": "^5.7.1",
+    "@capacitor/geolocation": "^5.0.7",
     "@capacitor/haptics": "5.0.7",
     "@capacitor/ios": "^5.7.1",
     "@capacitor/keyboard": "5.0.8",
