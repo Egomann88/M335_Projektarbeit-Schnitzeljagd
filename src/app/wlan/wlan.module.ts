@@ -8,6 +8,7 @@ import { WlanPageRoutingModule } from './wlan-routing.module';
 
 import { WlanPage } from './wlan.page';
 import {DetailsButtonComponent} from "../details-button/details-button.component";
+import {TaskHeaderComponent} from "../task-header/task-header.component";
 
 @NgModule({
     imports: [
@@ -16,9 +17,10 @@ import {DetailsButtonComponent} from "../details-button/details-button.component
         IonicModule,
         WlanPageRoutingModule
     ],
-    exports: [
-        DetailsButtonComponent
-    ],
-    declarations: [WlanPage, DetailsButtonComponent]
+  exports: [
+    DetailsButtonComponent,
+    TaskHeaderComponent
+  ],
+  declarations: [WlanPage, DetailsButtonComponent, TaskHeaderComponent]
 })
 export class WlanPageModule {}
