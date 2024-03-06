@@ -6,11 +6,11 @@ import { AlertService } from 'src/services/AlertService';
 import { SCAVENGERHUNTS } from 'src/mocks/ScavengerHuntMock';
 
 @Component({
-  selector: 'app-tab1',
-  templateUrl: 'tab1.page.html',
-  styleUrls: ['tab1.page.scss'],
+  selector: 'app-tabHome',
+  templateUrl: 'tabHome.page.html',
+  styleUrls: ['tabHome.page.scss'],
 })
-export class Tab1Page {
+export class TabHomePage {
   scavengerHunts: ScavengerHunt[] = SCAVENGERHUNTS;
   user: User = new User('', '');
 
