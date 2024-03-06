@@ -3,7 +3,7 @@
   <ion-toolbar color="primary">
     <ion-item color="primary" lines="none">
       <ion-title> Schnitzeljagten </ion-title>
-      <ion-button *ngIf="scavengerHunts.length > 0;" fill="clear" color="dark">
+      <ion-button fill="clear" color="dark" (click)="startNewScavengerHunt()">
         <ion-icon name="add-outline" size="large" color="dark"></ion-icon>
       </ion-button>
     </ion-item>
