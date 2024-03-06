@@ -1,8 +1,18 @@
 import { User } from './User';
 import { Task } from './task';
 
+export const taskUrls : any = {
+  1: "/geoloaction",
+  2: "",
+  3: "/qr-code",
+  4: "",
+  5: "/device-status",
+  6: "/wlan"
+}
+
 export class ScavengerHunt {
-  date: Date;
+  startDate: Date;
+  endDate?: Date;
   cutlets: number;
   potatoes: number;
   user: User
@@ -14,7 +24,7 @@ export class ScavengerHunt {
     potatoes: number,
     user: User
   ) {
-    this.date = date;
+    this.startDate = date;
     this.cutlets = cutlets;
     this.potatoes = potatoes;
     this.user = user;
