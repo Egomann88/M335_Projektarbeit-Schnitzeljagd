@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { ScavengerHunt } from 'src/models/ScavengerHunt';
 import { User } from 'src/models/User';
-import { UserHelper } from 'src/Helper/UserHelper';
+import { UserHelper } from 'src/helper/UserHelper';
 import { AlertService } from 'src/Services/AlertService';
 import { SCAVENGERHUNTS } from 'src/mocks/ScavengerHuntMock';
 
