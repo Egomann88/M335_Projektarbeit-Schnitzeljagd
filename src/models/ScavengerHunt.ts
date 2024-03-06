@@ -1,24 +1,20 @@
 import { User } from './User';
 
-export class ScavengerHunt implements User {
+export class ScavengerHunt{
   date: Date;
   cutlets: number;
   potatoes: number;
-  // from User
-  firstName: string;
-  lastName: string;
+  user: User
 
   constructor(
     date: Date,
     cutlets: number,
     potatoes: number,
-    firstName: string,
-    lastName: string
+    user: User
   ) {
     this.date = date;
     this.cutlets = cutlets;
     this.potatoes = potatoes;
-    this.firstName = firstName;
-    this.lastName = lastName;
+    this.user = user;
   }
 }
