@@ -8,8 +8,4 @@ export class User {
     this.firstName = firstName;
     this.lastName = lastName;
   }
-
-  getUserName(): string {
-    return this.firstName + ' ' + this.lastName;
-  }
 }
