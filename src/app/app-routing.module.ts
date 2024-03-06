@@ -9,13 +9,10 @@ const routes: Routes = [
   {
     path: 'geoloaction',
     loadChildren: () => import('./geoloaction/geoloaction.module').then( m => m.GeoloactionPageModule)
-  },  {
-    path: 'test',
-    loadChildren: () => import('./test/test.module').then( m => m.TestPageModule)
   },
   {
-    path: 'storage-test',
-    loadChildren: () => import('./storage-test/storage-test.module').then( m => m.StorageTestPageModule)
+    path: 'test',
+    loadChildren: () => import('./test/test.module').then( m => m.TestPageModule)
   },
 
   // define routes to new (without tabs) pages here
