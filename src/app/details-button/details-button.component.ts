@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {AlertService} from "../../Services/AlertService";
+import {AlertService} from "../../services/AlertService";
 
 @Component({
   selector: 'app-details-button',

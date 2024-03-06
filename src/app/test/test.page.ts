@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {StorageService} from "../../Services/storage.service";
+import {StorageService} from "../../services/storage.service";
 
 @Component({
   selector: 'app-test',

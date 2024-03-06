@@ -5,7 +5,7 @@ describe('WlanPage', () => {
   let component: WlanPage;
   let fixture: ComponentFixture<WlanPage>;
 
-  beforeEach(async(() => {
+  beforeEach((() => {
     fixture = TestBed.createComponent(WlanPage);
     component = fixture.componentInstance;
     fixture.detectChanges();
