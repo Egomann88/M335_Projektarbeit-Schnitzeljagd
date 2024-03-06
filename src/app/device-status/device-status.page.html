@@ -1,0 +1,22 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>Aufladen</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" >
+  <ion-item>
+    <ion-label class="ion-text-center">LADE DEIN GERÄT Auf</ion-label>
+  </ion-item>
+  <app-details-button
+    [text]="'Schliesse dein Gerät an das Stromnetz mit dem Ladekabel an und lasse es laden bis die Bar voll ist.'"
+  ></app-details-button>
+  <ion-item>
+    <ion-label class="ion-text-center">
+      <ion-label>{{getLoadingText()}}</ion-label>
+      <ion-icon name="battery-dead-outline" [color]="getColor()"></ion-icon>
+      <!--<ion-icon name="square-outline" *ngFor="let i of [1,2,3,4,5]" [color]="getColor(i)" size="large"></ion-icon>-->
+    </ion-label>
+  </ion-item>
+</ion-content>
+

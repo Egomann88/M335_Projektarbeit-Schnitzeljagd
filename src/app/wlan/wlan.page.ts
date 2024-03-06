@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { Network } from '@capacitor/network';
+import {Component, NgZone, OnInit} from '@angular/core';
+import {Network} from '@capacitor/network';
 
 @Component({
   selector: 'app-wlan',
@@ -17,21 +17,24 @@ export class WlanPage implements OnInit {
   deactivateWlan: string = "Trennen Sie Ihr WI-FI"
 
 
-  constructor() {
+  constructor(private zone: NgZone) {
   }
 
 
   async ngOnInit() {
-
     // Add a listener to the network status
     Network.addListener('networkStatusChange', status => {
-      this.networkStatus = status.connected;
-      this.changed = true;
+      try {
+        this.zone.run(() => {
+          this.networkStatus = status.connected;
+          this.changed = true;
+        })
+      } catch (err) {
+        console.error(err)
+      }
     });
-
     // Get the current network status
     await this.getCurrentStatus();
-
   }
 
   // Get the current network status

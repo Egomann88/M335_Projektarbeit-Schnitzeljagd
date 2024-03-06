@@ -5,6 +5,7 @@ export class ScavengerHunt{
   cutlets: number;
   potatoes: number;
   user: User
+  tasks: Task[]
 
   constructor(
     date: Date,
@@ -16,5 +17,8 @@ export class ScavengerHunt{
     this.cutlets = cutlets;
     this.potatoes = potatoes;
     this.user = user;
+    this.tasks = [
+
+    ]
   }
 }
