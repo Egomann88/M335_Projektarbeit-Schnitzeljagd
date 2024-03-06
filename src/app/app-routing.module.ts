@@ -6,6 +6,10 @@ const routes: Routes = [
     path: '',
     loadChildren: () => import('./tabs/tabs.module').then(m => m.TabsPageModule)
   },
+  {
+    path: 'geoloaction',
+    loadChildren: () => import('./geoloaction/geoloaction.module').then( m => m.GeoloactionPageModule)
+  },
   // define routes to new (without tabs) pages here
 ];
 @NgModule({
