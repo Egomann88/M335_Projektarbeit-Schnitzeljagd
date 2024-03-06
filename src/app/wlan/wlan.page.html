@@ -1,0 +1,20 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>Wlan wechseln</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" >
+  <ion-item>
+    <ion-label class="ion-text-center">{{getNextMessage()}}</ion-label>
+  </ion-item>
+  <app-details-button
+    [text]="'Trenne dich von deinem Wlan und verbinde dich anschliessend wieder mit dem Wlan.'"
+  ></app-details-button>
+  <ion-item>
+    <ion-label class="ion-text-center">
+      <ion-icon name="wifi-outline" [color]="getWifiColor()"></ion-icon>
+    </ion-label>
+  </ion-item>
+</ion-content>
+
