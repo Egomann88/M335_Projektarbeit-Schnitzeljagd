@@ -7,13 +7,15 @@ import { IonicModule } from '@ionic/angular';
 import { GeoloactionPageRoutingModule } from './geoloaction-routing.module';
 
 import { GeoloactionPage } from './geoloaction.page';
+import {WlanPageModule} from "../wlan/wlan.module";
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    GeoloactionPageRoutingModule
+    GeoloactionPageRoutingModule,
+    WlanPageModule
   ],
   declarations: [GeoloactionPage]
 })
