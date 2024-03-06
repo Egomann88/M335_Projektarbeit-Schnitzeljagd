@@ -1,9 +1,33 @@
 <ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title> Einstellungen </ion-title>
+  <ion-toolbar color="primary">
+    <ion-title>Einstellungen</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
+  <ion-label>
+    <ion-item lines="none" style="font-size: 14px;">
+      <ion-icon slot="start" color="primary" name="information-circle-outline" aria-hidden="true"></ion-icon>
+      <ion-label color="medium" style="text-align: justify;">
+        Benutzernamen allgemein speichern, damit man diesen nicht bei jeder Schnitzeljagd
+        eingeben musst.
+      </ion-label>
+    </ion-item>
 
+    <ion-item>
+      <ion-input labelPlacement="stacked" label="Vorname" placeholder="Vorname"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-input labelPlacement="stacked" label="Nachname" placeholder="Nachname"></ion-input>
+    </ion-item>
+  </ion-label>
+
+  <ion-toolbar>
+    <ion-item lines="none" slot="end">
+      <ion-button color="medium">Zurücksetzen</ion-button>
+    </ion-item>
+    <ion-item lines="none" slot="end">
+      <ion-button color="primary">Speichern</ion-button>
+    </ion-item>
+  </ion-toolbar>
 </ion-content>
