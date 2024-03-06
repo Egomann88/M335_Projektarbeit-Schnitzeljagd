@@ -5,6 +5,14 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <label>Latitude: {{ latitude }}</label>
-  <label> longitude: {{ longitude }}</label>
+  <div style="width: 50%; margin: auto; margin-top: 5px">
+    <span>Latitude: {{ latitude }}</span>
+    <br/>
+    <span> Longitude: {{ longitude }}</span>
+  </div>
+  <div style="width: 50%; margin: auto; margin-top: 5px">
+    <ion-label>Standort wird nicht akualisiert?</ion-label>
+    <br/>
+    <ion-button (click)="getCurrentPosition()"> Standort neu berrechnen </ion-button>
+  </div>
 </ion-content>
