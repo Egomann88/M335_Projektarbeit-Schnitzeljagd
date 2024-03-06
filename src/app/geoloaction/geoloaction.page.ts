@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, NgZone, OnInit} from '@angular/core';
 import { Geolocation } from '@capacitor/geolocation';
 
 @Component({
@@ -13,7 +13,7 @@ export class GeoloactionPage implements OnInit {
 
   watchId: string = "";
 
-  constructor() {
+  constructor(private zone: NgZone) {
   }
 
   options = {
@@ -33,8 +33,10 @@ export class GeoloactionPage implements OnInit {
       if (err || position == undefined) {
         console.error('Error watching position:', err);
       } else {
-        this.longitude = position.coords.longitude;
-        this.latitude = position.coords.latitude;
+        this.zone.run(() => {
+          this.longitude = position.coords.longitude;
+          this.latitude = position.coords.latitude;
+        })
       }
     });
   }
