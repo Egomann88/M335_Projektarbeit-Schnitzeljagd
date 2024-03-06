@@ -8,18 +8,39 @@ import { Geolocation } from '@capacitor/geolocation';
 })
 export class GeoloactionPage implements OnInit {
 
-  langitude: number = 0
+  latitude: number = 0
   longitude: number = 0
+
+  watchId: string = "";
+
   constructor() {
   }
 
-  async ngOnInit() {
-    await Geolocation.requestPermissions()
-  }
-
-  async printCurrentPosition() {
-    const coordinates = await Geolocation.getCurrentPosition();
-    console.log('Current position:', coordinates);
+  options = {
+    enableHighAccuracy: true,
+    timeout: 8000,
+    maximumAge: 7000,
   };
 
+
+  async ngOnInit() {
+    await Geolocation.requestPermissions()
+    await this.watchPosition()
+  }
+
+  async watchPosition() {
+    this.watchId = await Geolocation.watchPosition(this.options, (position, err) => {
+      if (err || position == undefined) {
+        console.error('Error watching position:', err);
+      } else {
+        this.longitude = position.coords.longitude;
+        this.latitude = position.coords.latitude;
+      }
+    });
+  }
+
+  // If you want to stop watching the position
+  stopWatching() {
+    Geolocation.clearWatch({ id: this.watchId });
+  }
 }
