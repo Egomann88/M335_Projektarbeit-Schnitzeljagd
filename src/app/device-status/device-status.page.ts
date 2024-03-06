@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Device} from "@capacitor/device";
 import {batteryCharging} from "ionicons/icons";
 
@@ -14,33 +14,37 @@ export class DeviceStatusPage implements OnInit {
   chargingLevel: number | undefined = 0;
   loadingDone: boolean = false;
 
-  constructor() { }
+  constructor() {
+  }
 
-  ngOnInit() {
-    this.lifecycle();
+  async ngOnInit() {
+    await this.lifecycle();
   }
 
   // Lifecycle of the loading bar
   async lifecycle() {
 
-    const interval = setInterval(async() => {
-      const info = await Device.getBatteryInfo();
+    const interval = setInterval(async () => {
+      try {
+        const info = await Device.getBatteryInfo();
 
-      this.loadingStatus = info.isCharging;
-      this.chargingLevel = info.batteryLevel;
+        this.loadingStatus = info.isCharging;
+        this.chargingLevel = info.batteryLevel;
 
-      // if the charging level is not undefined, remove the decimal point
-      if(this.chargingLevel !== undefined) this.chargingLevel = this.chargingLevel * 100;
+        // if the charging level is not undefined, remove the decimal point
+        if (this.chargingLevel !== undefined) this.chargingLevel = this.chargingLevel * 100;
 
-      if (info.isCharging) {
-        this.loadingField += 0.05;
+        if (info.isCharging) {
+          this.loadingField += 0.05;
+        }
+
+        if (this.loadingField >= 2) {
+          clearInterval(interval);
+          this.finishedTask();
+        }
+      } catch (err) {
+        console.error(err)
       }
-
-      if (this.loadingField >= 2) {
-        clearInterval(interval);
-        this.finishedTask();
-      }
-
     }, 500);
   }
 
