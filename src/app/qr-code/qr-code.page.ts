@@ -12,4 +12,7 @@ export class QrCodePage implements OnInit {
   ngOnInit() {
   }
 
+  scanCode() {
+    console.log("Scanning code");
+  }
 }
