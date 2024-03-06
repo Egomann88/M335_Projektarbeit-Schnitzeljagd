@@ -10,6 +10,11 @@ const routes: Routes = [
     path: 'geoloaction',
     loadChildren: () => import('./geoloaction/geoloaction.module').then( m => m.GeoloactionPageModule)
   },
+  {
+    path: 'wlan',
+    loadChildren: () => import('./wlan/wlan.module').then( m => m.WlanPageModule)
+  },
+
   // define routes to new (without tabs) pages here
 ];
 @NgModule({
