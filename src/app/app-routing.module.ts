@@ -8,14 +8,20 @@ const routes: Routes = [
   },
   {
     path: 'geoloaction',
-    loadChildren: () => import('./geoloaction/geoloaction.module').then( m => m.GeoloactionPageModule)
+    loadChildren: () => import('./geoloaction/geoloaction.module').then(m => m.GeoloactionPageModule)
   },
   {
     path: 'wlan',
     loadChildren: () => import('./wlan/wlan.module').then( m => m.WlanPageModule)
   },
-
-  // define routes to new (without tabs) pages here
+  {
+    path: 'qr-code',
+    loadChildren: () => import('./qr-code/qr-code.module').then(m => m.QrCodePageModule)
+  },
+  {
+    path: 'test',
+    loadChildren: () => import('./test/test.module').then(m => m.TestPageModule)
+  }
 ];
 @NgModule({
   imports: [
