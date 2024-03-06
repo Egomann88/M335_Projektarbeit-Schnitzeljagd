@@ -1,9 +1,22 @@
 <ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title> Schnitzeljagten </ion-title>
+  <!-- color muss bei beiden definiert sein -->
+  <ion-toolbar color="primary">
+    <ion-item color="primary" lines="none">
+      <ion-title> Schnitzeljagten </ion-title>
+      <ion-button fill="clear" color="dark">
+        <ion-icon name="add-outline" size="large" color="dark"></ion-icon>
+      </ion-button>
+    </ion-item>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-item></ion-item>
+  <ion-list style="padding: 0 20px 0 20px;">
+    <h2 style="text-align: center;">
+      Noch keine Schnitzeljagten vorhanden
+    </h2>
+    <ion-button expand="full" color="primary" shape="round">
+      Schnitzeljagd starten
+    </ion-button>
+  </ion-list>
 </ion-content>
