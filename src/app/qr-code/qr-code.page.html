@@ -5,5 +5,15 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-
+  <div style="padding: 0 20px 0 20px;">
+    <ion-item>
+      <ion-label>
+        <h1 style="font-weight: bold;">{{ "Scanne den Qr-Code!" | uppercase }}</h1>
+      </ion-label>
+    </ion-item>
+    <ion-label style="display: flex; flex-wrap: wrap; justify-content: center;">
+      <ion-button (click)="scanCode()" style="width: 100%;">Scannen</ion-button>
+      <ion-button color="medium" shape="round">Details</ion-button>
+    </ion-label>
+  </div>
 </ion-content>
