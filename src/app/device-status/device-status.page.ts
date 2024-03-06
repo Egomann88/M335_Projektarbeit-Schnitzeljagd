@@ -11,6 +11,7 @@ export class DeviceStatusPage implements OnInit {
 
   loadingField: number = 0;
   loadingStatus: boolean | undefined = false;
+  chargingLevel: number | undefined = 0;
   loadingDone: boolean = false;
 
   constructor() { }
@@ -26,6 +27,10 @@ export class DeviceStatusPage implements OnInit {
       const info = await Device.getBatteryInfo();
 
       this.loadingStatus = info.isCharging;
+      this.chargingLevel = info.batteryLevel;
+
+      // if the charging level is not undefined, remove the decimal point
+      if(this.chargingLevel !== undefined) this.chargingLevel = this.chargingLevel * 100;
 
       if (info.isCharging) {
         this.loadingField += 0.05;
@@ -61,7 +66,7 @@ export class DeviceStatusPage implements OnInit {
   // Sets the text of the loading bar
   getLoadingText() {
     if (this.loadingDone) return 'Ladevorgang abgeschlossen';
-    
+
     if (this.loadingStatus) {
       return 'Ladevorgang läuft...';
     } else {
