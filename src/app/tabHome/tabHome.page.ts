@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { ScavengerHunt } from 'src/models/ScavengerHunt';
 import { User } from 'src/models/User';
-import { UserHelper } from 'src/helper/UserHelper';
 import { AlertService } from 'src/services/AlertService';
 import { SCAVENGERHUNTS } from 'src/mocks/ScavengerHuntMock';
 
@@ -31,7 +30,7 @@ export class TabHomePage {
     return new Promise((resolve) => {
       const handler = (data: any) => {
         this.user = new User(data[0], data[1]);
-        if (UserHelper.getUserName(this.user).trim() === '') {
+        if (this.user.getUserName().trim() === '') {
           this.alertService.openErrorAlert("Kein gültiger Name eingegeben");
           resolve(false);
         } else {

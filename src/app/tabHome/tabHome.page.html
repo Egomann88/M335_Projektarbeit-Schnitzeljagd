@@ -20,7 +20,7 @@
       <ion-label>
         <h3>
           Schnitzeljagd von
-          <b>{{ scavengerHunt.firstName + " " + scavengerHunt.lastName }}</b>
+          <b>{{ scavengerHunt.user.getUserName() }}</b>
           am {{ scavengerHunt.date | date:'dd.MM.yyyy'}}
         </h3>
         <p>

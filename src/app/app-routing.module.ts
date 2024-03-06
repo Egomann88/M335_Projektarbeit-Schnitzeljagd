@@ -11,6 +11,10 @@ const routes: Routes = [
     loadChildren: () => import('./geoloaction/geoloaction.module').then(m => m.GeoloactionPageModule)
   },
   {
+    path: 'wlan',
+    loadChildren: () => import('./wlan/wlan.module').then( m => m.WlanPageModule)
+  },
+  {
     path: 'qr-code',
     loadChildren: () => import('./qr-code/qr-code.module').then(m => m.QrCodePageModule)
   },
