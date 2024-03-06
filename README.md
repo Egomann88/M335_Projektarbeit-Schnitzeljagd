@@ -26,7 +26,7 @@ Dieses Projekt ist eine Schnitzeljagd-Anwendung, die mit Ionic und Angular entwi
 
 - [Dominic T.](https://github.com/dominictosku)
 - [Justin U.](https://github.com/Egomann88)
-- [Jyodisen S.][https://github.com/Jyods]
+- [Jyodisen S.](https://github.com/Jyods)
 
 # Lizenz:
 
