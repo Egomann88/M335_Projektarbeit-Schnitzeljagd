@@ -18,7 +18,12 @@ export class ScavengerHunt{
     this.potatoes = potatoes;
     this.user = user;
     this.tasks = [
-
+      new Task(1, 'Standort'),
+      new Task(2, 'Strecke laufen'),
+      new Task(3, 'QR-Code'),
+      new Task(4, 'Pusten'),
+      new Task(5, 'Aufladen'),
+      new Task(6, 'WLAN'),
     ]
   }
 }
