@@ -15,19 +15,19 @@
     </ion-item>
 
     <ion-item>
-      <ion-input labelPlacement="stacked" label="Vorname" placeholder="Vorname"></ion-input>
+      <ion-input labelPlacement="stacked" label="Vorname" placeholder="Vorname" [(ngModel)]="user.firstName" />
     </ion-item>
     <ion-item>
-      <ion-input labelPlacement="stacked" label="Nachname" placeholder="Nachname"></ion-input>
+      <ion-input labelPlacement="stacked" label="Nachname" placeholder="Nachname" [(ngModel)]="user.lastName" />
     </ion-item>
   </ion-label>
 
   <ion-toolbar>
     <ion-item lines="none" slot="end">
-      <ion-button color="medium">Zurücksetzen</ion-button>
+      <ion-button color="medium" (click)="resetUser()">Zurücksetzen</ion-button>
     </ion-item>
     <ion-item lines="none" slot="end">
-      <ion-button color="primary">Speichern</ion-button>
+      <ion-button color="primary" (click)="saveUser()">Speichern</ion-button>
     </ion-item>
   </ion-toolbar>
   testlinks
