@@ -1,6 +1,7 @@
 import { User } from './User';
+import { Task } from './task';
 
-export class ScavengerHunt{
+export class ScavengerHunt {
   date: Date;
   cutlets: number;
   potatoes: number;
