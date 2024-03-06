@@ -3,7 +3,7 @@
   <ion-toolbar color="primary">
     <ion-item color="primary" lines="none">
       <ion-title> Schnitzeljagten </ion-title>
-      <ion-button fill="clear" color="dark" (click)="startNewScavengerHunt()">
+      <ion-button fill="clear" color="dark" (click)="prepareScavengerHunt()">
         <ion-icon name="add-outline" size="large" color="dark"></ion-icon>
       </ion-button>
     </ion-item>
@@ -20,7 +20,7 @@
       <ion-label>
         <h3>
           Schnitzeljagd von
-          <b>{{ scavengerHunt.user.getUserName() }}</b>
+          <b>{{ scavengerHunt.user.firstName + " " + scavengerHunt.user.lastName }}</b>
           am {{ scavengerHunt.date | date:'dd.MM.yyyy'}}
         </h3>
         <p>
