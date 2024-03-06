@@ -24,18 +24,26 @@ export class GeoloactionPage implements OnInit {
 
 
   async ngOnInit() {
-    await Geolocation.requestPermissions()
     await this.watchPosition()
   }
 
+  async getCurrentPosition(){
+    const coordinates = await Geolocation.getCurrentPosition();
+
+    this.latitude = coordinates.coords.latitude;
+    this.longitude = coordinates.coords.longitude;
+  };
+
   async watchPosition() {
     this.watchId = await Geolocation.watchPosition(this.options, (position, err) => {
-      if (err || position == undefined) {
+      if (err) {
         console.error('Error watching position:', err);
       } else {
         this.zone.run(() => {
-          this.longitude = position.coords.longitude;
-          this.latitude = position.coords.latitude;
+          if(position){
+            this.longitude = position.coords.longitude;
+            this.latitude = position.coords.latitude;
+          }
         })
       }
     });
