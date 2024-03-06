@@ -11,7 +11,9 @@
     </ion-toolbar>
   </ion-header>
 
-  <label>Gib einen Namen ein</label>
-  <input [(ngModel)]="testString" />
+  <label>Gib einen firstName ein</label>
+  <input [(ngModel)]="user.firstName" />
+  <label>Gib einen lastName ein</label>
+  <input [(ngModel)]="user.lastName" />
   <button (click)="saveNameToStorage()">Save</button>
 </ion-content>

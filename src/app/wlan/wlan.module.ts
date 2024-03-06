@@ -10,12 +10,15 @@ import { WlanPage } from './wlan.page';
 import {DetailsButtonComponent} from "../details-button/details-button.component";
 
 @NgModule({
-  imports: [
-    CommonModule,
-    FormsModule,
-    IonicModule,
-    WlanPageRoutingModule
-  ],
-  declarations: [WlanPage, DetailsButtonComponent]
+    imports: [
+        CommonModule,
+        FormsModule,
+        IonicModule,
+        WlanPageRoutingModule
+    ],
+    exports: [
+        DetailsButtonComponent
+    ],
+    declarations: [WlanPage, DetailsButtonComponent]
 })
 export class WlanPageModule {}
