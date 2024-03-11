@@ -8,14 +8,16 @@ export class Task {
   steaks: number;
   potatoes: number;
   isCompleted: boolean;
+  mainInstruction: string;
   details: TaskDetails;
 
-  constructor(id: number, name: string, details: TaskDetails) {
+  constructor(id: number, name: string, mainInstruction: string, details: TaskDetails) {
     this.id = id;
     this.name = name;
     this.steaks = 0;
     this.potatoes = 0;
     this.isCompleted = false;
+    this.mainInstruction = mainInstruction;
     this.details = details;
   }
 

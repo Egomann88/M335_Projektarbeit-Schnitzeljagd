@@ -4,7 +4,7 @@
   <div style="padding: 0 20px 0 20px;">
     <ion-item>
       <ion-label>
-        <h1 style="font-weight: bold;">{{ "Scanne den Qr-Code!" | uppercase }}</h1>
+        <h1 style="font-weight: bold;">{{ task?.mainInstruction | uppercase }}</h1>
       </ion-label>
     </ion-item>
     <app-details-button [details]="task?.details!"></app-details-button>
@@ -16,7 +16,7 @@
       <ion-input type="text" [value]="barcode.rawValue"></ion-input>
     </ion-item>
   </ion-list>
-  <ion-fab slot="fixed" vertical="bottom" horizontal="end">
+  <ion-fab slot="fixed" style="top: 71vh; right: 1vw;">
     <ion-fab-button (click)="scan()" [disabled]="!isSupported">
       <ion-icon name="qr-code-outline"></ion-icon>
     </ion-fab-button>

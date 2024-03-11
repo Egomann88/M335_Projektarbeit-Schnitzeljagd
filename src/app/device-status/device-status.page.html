@@ -2,7 +2,7 @@
 
 <ion-content [fullscreen]="true">
   <ion-item>
-    <ion-label class="ion-text-center">LADE DEIN GERÄT Auf</ion-label>
+    <ion-label class="ion-text-center">{{ task?.mainInstruction | uppercase }}</ion-label>
   </ion-item>
   <app-details-button [details]="task?.details!"></app-details-button>
   <ion-item>

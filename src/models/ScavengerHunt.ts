@@ -33,6 +33,7 @@ export class ScavengerHunt {
       new Task(
         1,
         'Standort',
+        'Gehe zur grossen Schreibmaschine im Zuppa Buona!',
         new TaskDetails(
           'Lost in GPSlation',
           'Du musst dich zu den angegebenen Standorten begeben. Deine Anwesenheit wird automatisch erkannt. Diese Aufgabe braucht Standort Berechtigungen und der Standort des Gerätes muss aktiviert sein. '
@@ -41,6 +42,7 @@ export class ScavengerHunt {
       new Task(
         2,
         'Strecke laufen',
+        'Laufe 20m!',
         new TaskDetails(
           'Marathon oder Snickers?',
           'Du musst die angegebene Strecke laufen, um die Aufgabe zu erfüllen. Diese Aufgabe braucht Standort Berechtigungen und der Standort des Gerätes muss aktiviert sein.'
@@ -49,6 +51,7 @@ export class ScavengerHunt {
       new Task(
         3,
         'QR-Code',
+        'Scanne den QR-Code!',
         new TaskDetails(
           'Code Cracker 3000',
           'Diese Aufgabe braucht Kamera Berechtigungen. Du musst den richtigen QR-Code scannen. Ist der Code falsch oder nicht lesbar, wird es dir angezeigt. Wenn der richtige Code gescannt wurde, wird die Aufgabe ohne weiteres erfüllt.'
@@ -57,6 +60,7 @@ export class ScavengerHunt {
       new Task(
         4,
         'Pusten',
+        'Puste ins Mikrofon!',
         new TaskDetails(
           'Aus der Puste?',
           'Diese Aufgabe braucht Mikrofon Berechtigungen. Du musst in das Mikrofon deines Gerätes pusten.'
@@ -65,6 +69,7 @@ export class ScavengerHunt {
       new Task(
         5,
         'Aufladen',
+        'Lade dein Gerät auf!',
         new TaskDetails(
           'Lade-Lama',
           'Stecke dein Gerät an das Ladegerät und warte einen Moment.'
@@ -73,6 +78,7 @@ export class ScavengerHunt {
       new Task(
         6,
         'WLAN',
+        'Wechsele das WLAN Netzwerk!',
         new TaskDetails(
           'Der Verbindungsvoyeur',
           'Trenne deine WLAN Verbindung und verbinde dich nochmal mit einem beliebigen Netzwerk. Hotspot und mobile Daten funktionieren auch.'
