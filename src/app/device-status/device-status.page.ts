@@ -46,7 +46,8 @@ export class DeviceStatusPage implements OnInit {
           this.finishedTask();
         }
       } catch (err) {
-        console.error(err)
+        console.error(err);
+        clearInterval(interval);
       }
     }, 500);
   }
