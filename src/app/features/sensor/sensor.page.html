@@ -3,9 +3,11 @@
 <ion-content [fullscreen]="true">
   <ion-item>
     <ion-title>
-      <ion-icon name="phone-portrait-outline" [color]="isCompleted ? 'success' : ''" [style.transform]="'rotate(' + (-rotationHorizontal) + 'deg)'"></ion-icon>
+      <ion-icon name="phone-portrait-outline" [color]="isCompleted ? 'success' : ''"
+        [style.transform]="'rotate(' + (-rotationHorizontal) + 'deg)'"></ion-icon>
     </ion-title>
   </ion-item>
+  <app-dev-button (devFunction)="completed()"></app-dev-button>
   <ion-item>
     <app-details-button [details]="task?.details!"></app-details-button>
   </ion-item>

@@ -38,9 +38,9 @@ export class SensorPage implements OnInit {
         // Zurücksetzen der Rotation für weitere Überprüfungen
       }
     });
-
   }
 
-
-
+  async completed(){
+    await this.scavengerHuntService.completeTask();
+  }
 }
