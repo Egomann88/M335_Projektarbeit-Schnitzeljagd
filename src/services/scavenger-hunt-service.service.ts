@@ -24,11 +24,12 @@ export class ScavengerHuntService {
   }
 
   async completeTask() {
-    if (this.currentTask == undefined) return;
+    if (this.currentTask == undefined || this.currentScavengerHunt == undefined) return;
     await Haptics.vibrate();
 
     this.currentTask.completeTask();
-    this.currentTask = this.currentScavengerHunt?.tasks[++this.currentIndex];
+    this.currentTask = this.currentScavengerHunt.tasks[++this.currentIndex];
+    this.currentTask.start();
     this.navigateToNextTask();
   }
 
