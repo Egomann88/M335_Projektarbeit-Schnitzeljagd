@@ -2,17 +2,19 @@
 
 <ion-content [fullscreen]="true">
   <div style="width: 50%; margin: auto; margin-top: 5px">
-    <span>Meter gelofen: {{ geolocationService.metresTraveled }}</span>
-    <br />
-    <span>Ziel: {{ geolocationService.targetMetres }}</span>
-    <br />
-    <span>Ziel erreicht: {{ geolocationService.metresReached }}</span>
+    <div>
+      Laufe {{ geolocationService.targetMetres }} Meter!
+    </div>
+    <div>
+      {{ geolocationService.metresTraveled }} / {{ geolocationService.targetMetres }}
+    </div>
   </div>
+  <app-dev-button (devFunction)="completed()"></app-dev-button>
+  <app-details-button [details]="task?.details!"></app-details-button>
+
   <div style="width: 50%; margin: auto; margin-top: 5px">
     <ion-label>Standort wird nicht akualisiert?</ion-label>
     <br />
     <ion-button (click)="getCurrentPosition()"> Standort neu berrechnen </ion-button>
   </div>
-  <app-dev-button (devFunction)="completed()"></app-dev-button>
-  <app-details-button [details]="task?.details!"></app-details-button>
 </ion-content>

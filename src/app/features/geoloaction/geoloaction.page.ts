@@ -1,9 +1,7 @@
 import { Component, NgZone, OnInit } from '@angular/core';
-import { Geolocation } from '@capacitor/geolocation';
 import { Task } from 'src/models/task';
 import { ScavengerHuntService } from 'src/services/scavenger-hunt-service.service';
 import { GeolocationServiceService } from 'src/services/geolocation-service.service'
-import { Haptics } from "@capacitor/haptics";
 
 @Component({
   selector: 'app-geoloaction',
