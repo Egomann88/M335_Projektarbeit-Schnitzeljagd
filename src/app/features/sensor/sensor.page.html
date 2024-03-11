@@ -1,7 +1,12 @@
 <app-task-header [title]="task?.name!"></app-task-header>
 
-<ion-content>
-  {{ rotationHorizontal }}
-  <ion-icon name="phone-portrait-outline" [style.transform]="'rotate(' + rotationHorizontal + 'deg)'"></ion-icon>
-  {{ isCompleted }}
+<ion-content [fullscreen]="true">
+  <ion-item>
+    <ion-title>
+      <ion-icon name="phone-portrait-outline" [color]="isCompleted ? 'success' : ''" [style.transform]="'rotate(' + (-rotationHorizontal) + 'deg)'"></ion-icon>
+    </ion-title>
+  </ion-item>
+  <ion-item>
+    <app-details-button [details]="task?.details!"></app-details-button>
+  </ion-item>
 </ion-content>

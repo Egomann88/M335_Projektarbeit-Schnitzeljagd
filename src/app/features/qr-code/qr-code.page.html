@@ -4,23 +4,24 @@
   <div style="padding: 0 20px 0 20px;">
     <ion-item>
       <ion-label>
-        <h1 style="font-weight: bold;">{{ task?.mainInstruction | uppercase }}</h1>
+        <h1 style="text-align: center; font-weight: bold;">{{ task?.mainInstruction | uppercase }}</h1>
       </ion-label>
     </ion-item>
     <app-details-button [details]="task?.details!"></app-details-button>
   </div>
-  <!--  -->
+  <!-- fab icon -->
+  <ion-fab slot="fixed" style="top: 71vh; right: 1vw;">
+    <ion-fab-button (click)="scan()" [disabled]="!isSupported">
+      <ion-icon name="qr-code-outline"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
+  <!-- value of qr-code -->
   <ion-list>
     <ion-item *ngFor="let barcode of barcodes">
       <ion-label position="stacked">{{ barcode.format }}</ion-label>
       <ion-input type="text" [value]="barcode.rawValue"></ion-input>
     </ion-item>
   </ion-list>
-  <ion-fab slot="fixed" style="top: 71vh; right: 1vw;">
-    <ion-fab-button (click)="scan()" [disabled]="!isSupported">
-      <ion-icon name="qr-code-outline"></ion-icon>
-    </ion-fab-button>
-  </ion-fab>
   <app-dev-button (devFunction)="completed()"></app-dev-button>
-  <app-details-button [details]="task?.details!"></app-details-button>
 </ion-content>

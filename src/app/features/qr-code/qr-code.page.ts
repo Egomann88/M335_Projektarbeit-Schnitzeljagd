@@ -13,6 +13,7 @@ export class QrCodePage implements OnInit {
   task?: Task;
   isSupported = false;
   barcodes: Barcode[] = [];
+  correctBarcodeValue = 'Freundschaft ist Magie';
 
   constructor(private alertService: AlertService, private scavengerHuntService: ScavengerHuntService) { }
 
@@ -36,6 +37,8 @@ export class QrCodePage implements OnInit {
     }
     const { barcodes } = await BarcodeScanner.scan();
     this.barcodes.push(...barcodes);
+
+    this.correctBarcode();
   }
 
   async requestPermissions(): Promise<boolean> {
@@ -43,7 +46,9 @@ export class QrCodePage implements OnInit {
     return camera === 'granted' || camera === 'limited';
   }
 
-  scanCode() {
-    console.log("Scanning code");
+  correctBarcode(): void {
+    this.barcodes.forEach(barcode => {
+      if (barcode.rawValue === this.correctBarcodeValue) this.completed();
+    });
   }
 }
