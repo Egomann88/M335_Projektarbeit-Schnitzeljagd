@@ -7,7 +7,7 @@ import { IonicModule } from '@ionic/angular';
 import { PermissionsPageRoutingModule } from './permissions-routing.module';
 
 import { PermissionsPage } from './permissions.page';
-import {WlanPageModule} from "../wlan/wlan.module";
+import {WlanPageModule} from "../features/wlan/wlan.module";
 
 @NgModule({
   imports: [
