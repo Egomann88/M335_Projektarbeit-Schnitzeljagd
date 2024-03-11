@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {TaskDetails} from "../../../models/taskDetails";
 
 @Component({
@@ -10,10 +10,10 @@ export class DevButtonComponent {
 
   constructor() { }
 
-  @Input() devFunction!: () => void;
+  @Output() devFunction = new EventEmitter<string>();
 
   executeDevFunction(){
-    this.devFunction();
+    this.devFunction.emit();
   }
 
 }
