@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { AlertService } from "../../services/AlertService";
+import { AlertService } from "../../../services/AlertService";
 import { ScavengerHuntService } from 'src/services/scavenger-hunt-service.service';
 
 @Component({
