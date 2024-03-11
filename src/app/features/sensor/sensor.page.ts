@@ -27,7 +27,7 @@ export class SensorPage implements OnInit {
       // Annahme: Die horizontale Drehung wird durch die X-Achse repräsentiert.
 
       // x ist die horizontale Drehung
-      this.rotationHorizontal = Math.round(event.alpha);
+      this.rotationHorizontal = Math.round(event.beta);
       console.log(this.rotationHorizontal);
 
       // Überprüfen, ob der Benutzer das Handy um 180 Grad gedreht hat

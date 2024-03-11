@@ -1,20 +1,21 @@
 <app-task-header [title]="task?.name!"></app-task-header>
 
 <ion-content [fullscreen]="true">
-  <div style="width: 50%; margin: auto; margin-top: 5px">
-    <span>Latitude: {{ geolocationService.currentLocation.latitude }}</span>
-    <br />
-    <span> Longitude: {{ geolocationService.currentLocation.longitude }}</span>
-    <br />
-    <span> Entfernung: {{ geolocationService.distance }}</span>
-    <br />
-    <span> Ziel erreicht: {{ geolocationService.distanceReached }}</span>
+  <div>
+    Gehe zum Zuppa Buoanas!
   </div>
+  <div style="width: 50%; margin: auto; margin-top: 5px">
+    Momentane Position
+    <div>Latitude: {{ geolocationService.currentLocation.latitude }}</div>
+    <div> Longitude: {{ geolocationService.currentLocation.longitude }}</div>
+    <div> Entfernung: {{ geolocationService.distance }}</div>
+  </div>
+  <app-dev-button (devFunction)="completed()"></app-dev-button>
+  <app-details-button [details]="task?.details!"></app-details-button>
+
   <div style="width: 50%; margin: auto; margin-top: 5px">
     <ion-label>Standort wird nicht akualisiert?</ion-label>
     <br />
     <ion-button (click)="getCurrentPosition()"> Standort neu berrechnen </ion-button>
   </div>
-  <app-dev-button (devFunction)="completed()"></app-dev-button>
-  <app-details-button [details]="task?.details!"></app-details-button>
 </ion-content>
