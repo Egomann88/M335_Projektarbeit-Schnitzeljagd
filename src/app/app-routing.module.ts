@@ -37,7 +37,11 @@ const routes: Routes = [
   {
     path: 'huntfin',
     loadChildren: () => import('./huntfin/huntfin.module').then(m => m.HuntfinPageModule)
+  },  {
+    path: 'sensor',
+    loadChildren: () => import('./features/sensor/sensor.module').then( m => m.SensorPageModule)
   }
+
 ];
 @NgModule({
   imports: [

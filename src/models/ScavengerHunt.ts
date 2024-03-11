@@ -6,7 +6,7 @@ export const taskUrls: any = {
   1: "/geoloaction",
   2: "",
   3: "/qr-code",
-  4: "",
+  4: "/sensor",
   5: "/device-status",
   6: "/wlan"
 }
