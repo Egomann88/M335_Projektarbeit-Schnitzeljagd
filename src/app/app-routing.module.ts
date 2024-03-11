@@ -24,6 +24,10 @@ const routes: Routes = [
   },  {
     path: 'device-status',
     loadChildren: () => import('./device-status/device-status.module').then( m => m.DeviceStatusPageModule)
+  },
+  {
+    path: 'permissions',
+    loadChildren: () => import('./permissions/permissions.module').then( m => m.PermissionsPageModule)
   }
 
 ];
