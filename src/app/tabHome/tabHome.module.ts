@@ -5,9 +5,10 @@ import { FormsModule } from '@angular/forms';
 import { TabHomePage } from './tabHome.page';
 
 import { TabHomePageRoutingModule } from './tabHome-routing.module';
+import {LeaderboardComponent} from "../leaderboard/leaderboard.component";
 
 @NgModule({
   imports: [IonicModule, CommonModule, FormsModule, TabHomePageRoutingModule],
-  declarations: [TabHomePage],
+    declarations: [TabHomePage, LeaderboardComponent],
 })
 export class TabHomePageModule { }
