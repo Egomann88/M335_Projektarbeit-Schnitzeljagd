@@ -24,6 +24,10 @@ const routes: Routes = [
   },  {
     path: 'device-status',
     loadChildren: () => import('./device-status/device-status.module').then( m => m.DeviceStatusPageModule)
+  },
+  {
+    path: 'distance',
+    loadChildren: () => import('./distance/distance.module').then( m => m.DistancePageModule)
   }
 
 ];
