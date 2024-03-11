@@ -1,5 +1,7 @@
-import {Component, NgZone, OnInit} from '@angular/core';
+import { Component, NgZone, OnInit } from '@angular/core';
 import { Geolocation } from '@capacitor/geolocation';
+import { Task } from 'src/models/task';
+import { ScavengerHuntService } from 'src/services/scavenger-hunt-service.service';
 
 @Component({
   selector: 'app-geoloaction',
@@ -7,14 +9,13 @@ import { Geolocation } from '@capacitor/geolocation';
   styleUrls: ['./geoloaction.page.scss'],
 })
 export class GeoloactionPage implements OnInit {
-
+  task?: Task;
   latitude: number = 0
   longitude: number = 0
 
   watchId: string = "";
 
-  constructor(private zone: NgZone) {
-  }
+  constructor(private zone: NgZone, private scavengerHuntService: ScavengerHuntService) { }
 
   options = {
     enableHighAccuracy: true,
@@ -24,10 +25,12 @@ export class GeoloactionPage implements OnInit {
 
 
   async ngOnInit() {
+    this.task = this.scavengerHuntService.currentTask;
+
     await this.watchPosition()
   }
 
-  async getCurrentPosition(){
+  async getCurrentPosition() {
     const coordinates = await Geolocation.getCurrentPosition();
 
     this.latitude = coordinates.coords.latitude;
@@ -40,7 +43,7 @@ export class GeoloactionPage implements OnInit {
         console.error('Error watching position:', err);
       } else {
         this.zone.run(() => {
-          if(position){
+          if (position) {
             this.longitude = position.coords.longitude;
             this.latitude = position.coords.latitude;
           }

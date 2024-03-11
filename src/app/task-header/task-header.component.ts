@@ -1,41 +1,30 @@
-import { Component, OnInit } from '@angular/core';
-import { Input } from '@angular/core';
-import {AlertService} from "../../services/AlertService";
+import { Component, Input } from '@angular/core';
+import { AlertService } from "../../services/AlertService";
+import { ScavengerHuntService } from 'src/services/scavenger-hunt-service.service';
 
 @Component({
   selector: 'app-task-header',
   templateUrl: './task-header.component.html',
   styleUrls: ['./task-header.component.scss'],
 })
-export class TaskHeaderComponent  implements OnInit {
+export class TaskHeaderComponent {
+  @Input() title!: string
 
-  @Input() title: string = 'Kein Titel definiert.';
-  constructor(private alertService: AlertService) { }
+  constructor(private alertService: AlertService, private scavengerHuntService: ScavengerHuntService) { }
 
-  ngOnInit() {}
-
-  async dismiss() {
-    console.log('Dismissed');
-
-    const handler = (data: any) => {
-      window.location.href = '/';
-    }
-
+  async cancelScavenge() {
     this.alertService.PresentAlert(
-      'Lauf Abbrechen',
+      'Schnitzeljagd abbrechen?',
       [
         {
-          text: 'Ja',
+          text: 'Nein',
           role: 'cancel',
-          handler,
         },
         {
-          text: 'Nein',
+          text: 'Ja',
+          handler: () => this.scavengerHuntService.cancelScavenge(),
         },
-      ],
-      'Sind Sie sicher, dass Sie den Lauf beenden möchten? Sie werden trotzdem eingetragen.',
-      []
+      ]
     );
   }
-
 }

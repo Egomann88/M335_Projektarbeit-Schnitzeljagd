@@ -4,6 +4,7 @@ import { User } from 'src/models/User';
 import { AlertService } from 'src/services/AlertService';
 import { UserService } from 'src/services/user.service';
 import { UserHelper } from 'src/helpers/UserHelper';
+import { ScavengerHuntService } from 'src/services/scavenger-hunt-service.service';
 import { SCAVENGERHUNTS } from 'src/mocks/ScavengerHuntMock';
 
 @Component({
@@ -16,7 +17,7 @@ export class TabHomePage {
   user: User = new User('', '');
   userValid: boolean = false;
 
-  constructor(private alertService: AlertService, private userService: UserService) { }
+  constructor(private alertService: AlertService, private userService: UserService, private scavengerHuntService: ScavengerHuntService) { }
 
   // must be called every time when the view loads -> user can be changed in the settings
   async ionViewWillEnter() {
@@ -91,6 +92,6 @@ export class TabHomePage {
   }
 
   startNewScavengerHunt() {
-    console.log("Start new scavenger hunt");
+    this.scavengerHuntService.startScavenge(this.user);
   }
 }

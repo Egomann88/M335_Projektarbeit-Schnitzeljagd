@@ -1,6 +1,8 @@
-import {Component, OnInit} from '@angular/core';
-import {Device} from "@capacitor/device";
-import {batteryCharging} from "ionicons/icons";
+import { Component, OnInit } from '@angular/core';
+import { Device } from "@capacitor/device";
+import { batteryCharging } from "ionicons/icons";
+import { Task } from 'src/models/task';
+import { ScavengerHuntService } from 'src/services/scavenger-hunt-service.service';
 
 @Component({
   selector: 'app-device-status',
@@ -8,16 +10,17 @@ import {batteryCharging} from "ionicons/icons";
   styleUrls: ['./device-status.page.scss'],
 })
 export class DeviceStatusPage implements OnInit {
-
+  task?: Task;
   loadingField: number = 0;
   loadingStatus: boolean | undefined = false;
   chargingLevel: number | undefined = 0;
   loadingDone: boolean = false;
 
-  constructor() {
-  }
+  constructor(public scavengerHuntService: ScavengerHuntService) { }
 
   async ngOnInit() {
+    this.task = this.scavengerHuntService.currentTask;
+
     await this.lifecycle();
   }
 

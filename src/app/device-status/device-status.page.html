@@ -1,14 +1,10 @@
-<app-task-header
-  [title]="'Aufladen'">
-</app-task-header>
+<app-task-header [title]="task?.name!"></app-task-header>
 
-<ion-content [fullscreen]="true" >
+<ion-content [fullscreen]="true">
   <ion-item>
     <ion-label class="ion-text-center">LADE DEIN GERÄT Auf</ion-label>
   </ion-item>
-  <app-details-button
-    [text]="'Schliesse dein Gerät an das Stromnetz mit dem Ladekabel an und lasse es laden bis die Bar voll ist.'"
-  ></app-details-button>
+  <app-details-button [details]="task?.details!"></app-details-button>
   <ion-item>
     <ion-label class="ion-text-center">
       <ion-label>{{getLoadingText()}}</ion-label>
@@ -17,4 +13,3 @@
     </ion-label>
   </ion-item>
 </ion-content>
-

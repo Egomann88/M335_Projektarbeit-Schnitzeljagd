@@ -1,5 +1,7 @@
-import {Component, NgZone, OnInit} from '@angular/core';
-import {Network} from '@capacitor/network';
+import { Component, NgZone, OnInit } from '@angular/core';
+import { Network } from '@capacitor/network';
+import { Task } from 'src/models/task';
+import { ScavengerHuntService } from 'src/services/scavenger-hunt-service.service';
 
 @Component({
   selector: 'app-wlan',
@@ -8,20 +10,16 @@ import {Network} from '@capacitor/network';
 })
 
 export class WlanPage implements OnInit {
-
+  task?: Task;
   networkStatus: boolean = false;
   joinedWith: boolean = false;
   changed: boolean = false;
 
-  activateWlan: string = "Verbinden Sie sich mit dem Kurs WI-FI."
-  deactivateWlan: string = "Trennen Sie Ihr WI-FI"
-
-
-  constructor(private zone: NgZone) {
-  }
-
+  constructor(private zone: NgZone, private scavengerHuntService: ScavengerHuntService) { }
 
   async ngOnInit() {
+    this.task = this.scavengerHuntService.currentTask;
+
     // Add a listener to the network status
     Network.addListener('networkStatusChange', status => {
       try {
@@ -30,7 +28,7 @@ export class WlanPage implements OnInit {
           this.changed = true;
         })
       } catch (err) {
-        console.error(err)
+        console.error(err);
       }
     });
     // Get the current network status
@@ -46,31 +44,18 @@ export class WlanPage implements OnInit {
 
   // Sets the color of the WI-FI icon
   getWifiColor() {
-    if (this.networkStatus) {
-      return 'success';
-    } else {
-      return 'danger';
-    }
+    if (this.networkStatus) return 'success';
+
+    return 'danger';
   }
 
   getNextMessage() {
     // If the user changed the network status two times, the task is finished
-    if (this.changed && (this.joinedWith == this.networkStatus)) {
-      this.finishedTask();
-      return ""
-    }
-
-    // If the user has changed the network status, the message will be updated
-    if (this.networkStatus) {
-      return this.deactivateWlan
-    } else {
-      return this.activateWlan
-    }
+    if (this.changed && (this.joinedWith == this.networkStatus)) this.finishedTask();
   }
 
   // Placeholder for what should happen after the task is finished
   finishedTask() {
     console.log("Task finished");
   }
-
 }

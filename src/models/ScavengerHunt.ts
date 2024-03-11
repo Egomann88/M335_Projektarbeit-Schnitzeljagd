@@ -1,7 +1,8 @@
 import { User } from './User';
 import { Task } from './task';
+import { TaskDetails } from './taskDetails';
 
-export const taskUrls : any = {
+export const taskUrls: any = {
   1: "/geoloaction",
   2: "",
   3: "/qr-code",
@@ -15,8 +16,8 @@ export class ScavengerHunt {
   endDate?: Date;
   cutlets: number;
   potatoes: number;
-  user: User
-  tasks: Task[]
+  user: User;
+  tasks: Task[];
 
   constructor(
     date: Date,
@@ -29,12 +30,54 @@ export class ScavengerHunt {
     this.potatoes = potatoes;
     this.user = user;
     this.tasks = [
-      new Task(1, 'Standort'),
-      new Task(2, 'Strecke laufen'),
-      new Task(3, 'QR-Code'),
-      new Task(4, 'Pusten'),
-      new Task(5, 'Aufladen'),
-      new Task(6, 'WLAN'),
-    ]
+      new Task(
+        1,
+        'Standort',
+        new TaskDetails(
+          'Lost in GPSlation',
+          'Du musst dich zu den angegebenen Standorten begeben. Deine Anwesenheit wird automatisch erkannt. Diese Aufgabe braucht Standort Berechtigungen und der Standort des Gerätes muss aktiviert sein. '
+        )
+      ),
+      new Task(
+        2,
+        'Strecke laufen',
+        new TaskDetails(
+          'Marathon oder Snickers?',
+          'Du musst die angegebene Strecke laufen, um die Aufgabe zu erfüllen. Diese Aufgabe braucht Standort Berechtigungen und der Standort des Gerätes muss aktiviert sein.'
+        )
+      ),
+      new Task(
+        3,
+        'QR-Code',
+        new TaskDetails(
+          'Code Cracker 3000',
+          'Diese Aufgabe braucht Kamera Berechtigungen. Du musst den richtigen QR-Code scannen. Ist der Code falsch oder nicht lesbar, wird es dir angezeigt. Wenn der richtige Code gescannt wurde, wird die Aufgabe ohne weiteres erfüllt.'
+        )
+      ),
+      new Task(
+        4,
+        'Pusten',
+        new TaskDetails(
+          'Aus der Puste?',
+          'Diese Aufgabe braucht Mikrofon Berechtigungen. Du musst in das Mikrofon deines Gerätes pusten.'
+        )
+      ),
+      new Task(
+        5,
+        'Aufladen',
+        new TaskDetails(
+          'Lade-Lama',
+          'Stecke dein Gerät an das Ladegerät und warte einen Moment.'
+        )
+      ),
+      new Task(
+        6,
+        'WLAN',
+        new TaskDetails(
+          'Der Verbindungsvoyeur',
+          'Trenne deine WLAN Verbindung und verbinde dich nochmal mit einem beliebigen Netzwerk. Hotspot und mobile Daten funktionieren auch.'
+        )
+      ),
+    ];
   }
 }

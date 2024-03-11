@@ -1,16 +1,15 @@
-<app-task-header
-  [title]="'Standort'">
-</app-task-header>
+<app-task-header [title]="task?.name!"></app-task-header>
 
 <ion-content [fullscreen]="true">
   <div style="width: 50%; margin: auto; margin-top: 5px">
     <span>Latitude: {{ latitude }}</span>
-    <br/>
+    <br />
     <span> Longitude: {{ longitude }}</span>
   </div>
   <div style="width: 50%; margin: auto; margin-top: 5px">
     <ion-label>Standort wird nicht akualisiert?</ion-label>
-    <br/>
+    <br />
     <ion-button (click)="getCurrentPosition()"> Standort neu berrechnen </ion-button>
   </div>
+  <app-details-button [details]="task?.details!"></app-details-button>
 </ion-content>

@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Barcode, BarcodeScanner } from '@capacitor-mlkit/barcode-scanning';
 import { AlertService } from 'src/services/AlertService';
+import { Task } from 'src/models/task';
+import { ScavengerHuntService } from 'src/services/scavenger-hunt-service.service';
 
 @Component({
   selector: 'app-qr-code',
@@ -8,12 +10,15 @@ import { AlertService } from 'src/services/AlertService';
   styleUrls: ['./qr-code.page.scss'],
 })
 export class QrCodePage implements OnInit {
+  task?: Task;
   isSupported = false;
   barcodes: Barcode[] = [];
 
-  constructor(private alertService: AlertService) { }
+  constructor(private alertService: AlertService, private scavengerHuntService: ScavengerHuntService) { }
 
   ngOnInit() {
+    this.task = this.scavengerHuntService.currentTask;
+
     BarcodeScanner.isSupported().then((res) => {
       this.isSupported = res.supported;
     });

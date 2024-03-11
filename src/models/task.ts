@@ -1,3 +1,5 @@
+import { TaskDetails } from './taskDetails';
+
 export class Task {
   id: number;
   name: string;
@@ -6,13 +8,15 @@ export class Task {
   steaks: number;
   potatoes: number;
   isCompleted: boolean;
+  details: TaskDetails;
 
-  constructor(id: number, name: string) {
+  constructor(id: number, name: string, details: TaskDetails) {
     this.id = id;
     this.name = name;
     this.steaks = 0;
     this.potatoes = 0;
     this.isCompleted = false;
+    this.details = details;
   }
 
   completeTask(start: Date, end: Date, steaks: number, potatoes: number) {

@@ -1,6 +1,4 @@
-<app-task-header
-  [title]="'QR-Code'">
-</app-task-header>
+<app-task-header [title]="task?.name!"></app-task-header>
 
 <ion-content [fullscreen]="true">
   <div style="padding: 0 20px 0 20px;">
@@ -9,10 +7,7 @@
         <h1 style="font-weight: bold;">{{ "Scanne den Qr-Code!" | uppercase }}</h1>
       </ion-label>
     </ion-item>
-    <ion-label style="display: flex; flex-wrap: wrap; justify-content: center;">
-      <ion-button (click)="scanCode()" style="width: 100%;">Scannen</ion-button>
-      <ion-button color="medium" shape="round">Details</ion-button>
-    </ion-label>
+    <app-details-button [details]="task?.details!"></app-details-button>
   </div>
   <!--  -->
   <ion-list>
@@ -23,7 +18,7 @@
   </ion-list>
   <ion-fab slot="fixed" vertical="bottom" horizontal="end">
     <ion-fab-button (click)="scan()" [disabled]="!isSupported">
-      <ion-icon name="scan"></ion-icon>
+      <ion-icon name="qr-code-outline"></ion-icon>
     </ion-fab-button>
   </ion-fab>
 </ion-content>

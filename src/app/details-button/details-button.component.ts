@@ -1,5 +1,6 @@
-import {Component, Input, OnInit} from '@angular/core';
-import {AlertService} from "../../services/AlertService";
+import { Component, Input, OnInit } from '@angular/core';
+import { AlertService } from "../../services/AlertService";
+import { TaskDetails } from 'src/models/taskDetails';
 
 @Component({
   selector: 'app-details-button',
@@ -10,18 +11,13 @@ export class DetailsButtonComponent {
 
   constructor(private alertService: AlertService) { }
 
-  @Input() text: string = 'Keine Details definiert.';
+  @Input() details: TaskDetails = new TaskDetails('Details', 'Keine Details definiert.');
 
-  async showDetails() {
+  async presentDetails() {
     await this.alertService.PresentAlert(
-      'Details',
-      [
-        {
-          text: 'Verstanden',
-          role: 'cancel'
-        },
-      ],
-      this.text,
+      this.details.title,
+      ['Verstanden'],
+      this.details.desc,
     );
   }
 

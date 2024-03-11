@@ -1,18 +1,13 @@
-<app-task-header
-[title]="'Wlan wechseln'"
-></app-task-header>
+<app-task-header [title]="task?.name!"></app-task-header>
 
-<ion-content [fullscreen]="true" >
+<ion-content [fullscreen]="true">
   <ion-item>
-    <ion-label class="ion-text-center">{{getNextMessage()}}</ion-label>
+    <ion-label class="ion-text-center">{{ task?.mainInstruction | uppercase }}</ion-label>
   </ion-item>
-  <app-details-button
-    [text]="'Trenne dich von deinem Wlan und verbinde dich anschliessend wieder mit dem Wlan.'"
-  ></app-details-button>
+  <app-details-button [details]="task?.details!"></app-details-button>
   <ion-item>
     <ion-label class="ion-text-center">
       <ion-icon name="wifi-outline" [color]="getWifiColor()"></ion-icon>
     </ion-label>
   </ion-item>
 </ion-content>
-
