@@ -11,15 +11,16 @@ export class PermissionsPage implements OnInit {
 
   geoLocationPermission: boolean = false;
   geoCoarsePermission: boolean = false;
+  geoError: string = "";
 
   cameraBarcodePermission: boolean = false;
-
-  error: string = "";
+  cameraError: string = "";
 
   constructor() { }
 
   async ngOnInit() {
     await this.checkGeoPermission();
+    await this.checkCameraPermission();
   }
 
   async checkGeoPermission() {
@@ -27,13 +28,18 @@ export class PermissionsPage implements OnInit {
       const result = await Geolocation.checkPermissions();
       if (result.location === "granted") {
         this.geoLocationPermission = true;
+      } else if (result.location === "denied") {
+        this.geoError = "Die Berechtigung wurde verweigert. Bitte erlaube den Zugriff auf deinen Standort.";
       }
-      if (result.location === "granted" || result.location === "prompt") {
+
+      if (result.location === "granted") {
         this.geoCoarsePermission = true;
+      } else if (result.location === "denied") {
+        this.geoError = "Die Berechtigung wurde verweigert. Bitte erlaube den Zugriff auf deinen Standort.";
       }
     } catch (e) {
       console.log(e);
-      this.error = "Überprüfe ob deine Standortdienste aktiviert sind.";
+      this.geoError = "Überprüfe ob deine Standortdienste aktiviert sind.";
     }
   }
 
@@ -42,10 +48,12 @@ export class PermissionsPage implements OnInit {
       const result = await BarcodeScanner.checkPermissions();
       if (result.camera === "granted") {
         this.cameraBarcodePermission = true;
+      } else {
+        this.cameraError = "Die Berechtigung wurde verweigert. Bitte erlaube den Zugriff auf die Kamera.";
       }
     } catch (e) {
       console.log(e);
-      this.error = "Überprüfe ob deine Kamera aktiviert ist.";
+      this.cameraError = "Es ist ein Fehler aufgetreten. Bitte versuche es erneut."
     }
   }
 

@@ -20,8 +20,8 @@ export class GeoloactionPage implements OnInit {
 
   async ngOnInit() {
     this.task = this.scavengerHuntService.currentTask;
-
-    await this.geolocationService.watchPosition()
+    await this.geolocationService.resetService();
+    await this.geolocationService.watchPosition();
   }
 
   async getCurrentPosition(){

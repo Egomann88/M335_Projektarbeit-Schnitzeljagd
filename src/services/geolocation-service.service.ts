@@ -6,18 +6,25 @@ import {coords, haversineDistance} from "../utils/geolocation.utils";
   providedIn: 'root'
 })
 export class GeolocationServiceService {
-  public latitude: number = 0
-  public longitude: number = 0
+  // for geolocation
   public distance : number = 100000;
+  public currentLocation: coords = new coords(0,0)
   public distanceReached: boolean = false;
-
   private destinationLatitude: number = 47.071610;
   private destinationLongitude: number = 8.348653;
   private targetDistance: number = 10;
 
+  //for distance
+  public metresTraveled: number = 0;
+  public targetMetres: number = 100;
+  private lastLocation: coords = new coords(0, 0)
+  public metresReached: boolean = false;
+
   watchId: string = "";
 
-  constructor(private zone: NgZone) { }
+  constructor(private zone: NgZone) {
+
+  }
 
   options = {
     enableHighAccuracy: true,
@@ -29,11 +36,32 @@ export class GeolocationServiceService {
     return this.distance < this.targetDistance
   }
 
+  public checkMetres(){
+    return this.metresTraveled > this.targetMetres
+  }
+
+  public async resetService(){
+    await this.stopWatching();
+    this.currentLocation = new coords(0, 0);
+    this.lastLocation = new coords(0, 0);
+    this.metresTraveled = 0;
+    this.watchId = "";
+  }
+
   public async getCurrentPosition() {
     const coordinates = await Geolocation.getCurrentPosition();
+    // for distance
+    try{
+      this.updateLastLocation(coordinates.coords.latitude, coordinates.coords.longitude)
+      this.calculateMetres()
+      this.metresReached = this.checkMetres()
+    }catch (e: any){
+      console.error("Cannot calculate metres traveled")
+    }
 
-    this.latitude = coordinates.coords.latitude;
-    this.longitude = coordinates.coords.longitude;
+    // for geolocation
+    this.currentLocation.latitude = coordinates.coords.latitude;
+    this.currentLocation.longitude = coordinates.coords.longitude;
     this.calculateDistance();
     this.distanceReached = this.checkDistance()
   };
@@ -45,8 +73,18 @@ export class GeolocationServiceService {
       } else {
         this.zone.run(() => {
           if (position) {
-            this.longitude = position.coords.longitude;
-            this.latitude = position.coords.latitude;
+            // for distance
+            try{
+              this.updateLastLocation(position.coords.latitude, position.coords.longitude)
+              this.calculateMetres()
+              this.metresReached = this.checkMetres()
+            }catch (e: any){
+              console.error("Cannot calculate metres traveled")
+            }
+
+            // for geolocation
+            this.currentLocation.longitude = position.coords.longitude;
+            this.currentLocation.latitude = position.coords.latitude;
             this.calculateDistance();
             this.distanceReached = this.checkDistance()
           }
@@ -55,14 +93,31 @@ export class GeolocationServiceService {
     });
   }
 
+  private updateLastLocation(latitude: number, longitude: number){
+    this.lastLocation.latitude = latitude;
+    this.lastLocation.longitude = longitude;
+  }
+
+  public async initialCheckForMetres(){
+    if(this.currentLocation.latitude == 0){
+      const coordinates = await Geolocation.getCurrentPosition();
+      this.currentLocation.latitude = coordinates.coords.latitude;
+      this.currentLocation.longitude = coordinates.coords.longitude;
+    }
+  }
+
+  private calculateMetres(){
+    this.metresTraveled += haversineDistance(this.currentLocation, this.lastLocation);
+  }
+
   private calculateDistance(){
     let destinationCoords = new coords(this.destinationLatitude, this.destinationLongitude)
-    let currentCoords = new coords(this.latitude, this.longitude)
-    this.distance = haversineDistance(destinationCoords, currentCoords);
+    this.distance = haversineDistance(destinationCoords, this.currentLocation);
   }
 
   // If you want to stop watching the position
-  public stopWatching() {
-    Geolocation.clearWatch({ id: this.watchId });
+  public async stopWatching() {
+    if(this.watchId != "")
+      await Geolocation.clearWatch({ id: this.watchId });
   }
 }
