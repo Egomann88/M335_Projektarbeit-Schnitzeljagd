@@ -13,6 +13,7 @@ import {PluginListenerHandle} from "@capacitor/core";
 export class SensorPage implements OnInit {
   task?: Task;
   rotationHorizontal: number = 0;
+  isCompleted: boolean = false;
 
   constructor(private alertService: AlertService, private scavengerHuntService: ScavengerHuntService) { }
 
@@ -22,22 +23,20 @@ export class SensorPage implements OnInit {
 
     let accelHandler: PluginListenerHandle;
 
-    accelHandler = Motion.addListener('accel', event => {
+    accelHandler = Motion.addListener('orientation', event => {
       // Annahme: Die horizontale Drehung wird durch die X-Achse repräsentiert.
-      let x = event.acceleration.x;
 
       // x ist die horizontale Drehung
-      this.rotationHorizontal += x;
+      this.rotationHorizontal = Math.round(event.alpha);
       console.log(this.rotationHorizontal);
 
       // Überprüfen, ob der Benutzer das Handy um 180 Grad gedreht hat
-      if (Math.abs(this.rotationHorizontal) >= 180) {
+      if (this.rotationHorizontal >= 160 && this.rotationHorizontal <= 190) {
         console.log("Task completed");
         // Füge hier deinen Code für die abgeschlossene Aufgabe hinzu
         // Beispiel: this.scavengerHuntService.completeTask();
-
+        this.isCompleted = true;
         // Zurücksetzen der Rotation für weitere Überprüfungen
-        this.rotationHorizontal = 0;
       }
     });
 
