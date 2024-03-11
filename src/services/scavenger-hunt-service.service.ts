@@ -17,6 +17,7 @@ export class ScavengerHuntService {
   startScavenge(user: User) {
     this.currentScavengerHunt = new ScavengerHunt(new Date(), 0, 0, user);
     this.currentTask = this.currentScavengerHunt.tasks[this.currentIndex];
+    this.currentTask.start();
 
     // navigate to first task
     this.navigateToNextTask();
