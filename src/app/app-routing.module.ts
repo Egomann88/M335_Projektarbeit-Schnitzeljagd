@@ -29,7 +29,11 @@ const routes: Routes = [
   {
     path: 'distance',
     loadChildren: () => import('./features/distance/distance.module').then( m => m.DistancePageModule)
+  },  {
+    path: 'huntfin',
+    loadChildren: () => import('./huntfin/huntfin.module').then( m => m.HuntfinPageModule)
   }
+
 
 ];
 @NgModule({
