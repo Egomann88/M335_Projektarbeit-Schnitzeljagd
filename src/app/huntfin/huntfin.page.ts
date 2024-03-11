@@ -17,17 +17,17 @@ export class HuntfinPage implements OnInit {
   }
 
   submit() {
-    if (
-      this.scavengerHuntService.currentScavengerHunt == undefined ||
-      this.scavengerHuntService.currentScavengerHunt.endDate == undefined
-    ) return;
+    if (this.scavengerHuntService === undefined) return;
 
     let name = UserHelper.getFullUserName(this.scavengerHuntService.currentScavengerHunt?.user!);
-    let cutlets = this.scavengerHuntService.currentScavengerHunt.cutlets.toString();
-    let potatoes = this.scavengerHuntService.currentScavengerHunt.potatoes.toString();
-    let hours = this.scavengerHuntService.currentScavengerHunt.endDate.getHours();
-    let minutes = this.scavengerHuntService.currentScavengerHunt.endDate.getMinutes();
-    let seconds = this.scavengerHuntService.currentScavengerHunt.endDate.getSeconds();
+    let cutlets = this.scavengerHuntService.getAllCutlets().toString();
+    let potatoes = this.scavengerHuntService.getAllPotatoes().toString();
+
+    // calc time
+    let time = this.scavengerHuntService.getTotalTimeSeconds();
+    let hours = Math.floor(time / 3600);
+    let minutes = Math.floor((time % 3600) / 60);
+    let seconds = (time % 3600) % 60;
 
     this.apiService.post(name, cutlets, potatoes, hours, minutes, seconds);
 

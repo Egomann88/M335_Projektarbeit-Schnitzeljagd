@@ -8,18 +8,20 @@
       <h3>
         Schnitzeljagd von
         <b>{{ scavengerHunt.user.firstName + " " + scavengerHunt.user.lastName }}</b>
-        am {{ scavengerHunt.endDate | date:'dd.MM.yyyy'}}
+        am {{ scavengerHunt.startDate | date:'dd.MM.yyyy'}}
       </h3>
       <p>
-        {{ scavengerHunt.cutlets }}x 🥩,
-        {{ scavengerHunt.potatoes }}x 🥔
+        {{ scavengerHuntService.getAllCutlets() }}x 🥩,
+        {{ scavengerHuntService.getAllPotatoes() }}x 🥔
       </p>
     </ion-label>
+    <!--
     <div>
       <ion-button fill="clear" color="dark">
         <ion-icon name="chevron-forward-outline" size="large"></ion-icon>
       </ion-button>
     </div>
+    -->
   </ion-item>
 </ion-list>
 <ng-template #noHunts style="padding: 0 20px 0 20px;">

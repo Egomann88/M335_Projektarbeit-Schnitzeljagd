@@ -15,7 +15,7 @@ export class ScavengerHuntService {
   constructor(private route: Router) { }
 
   startScavenge(user: User) {
-    this.currentScavengerHunt = new ScavengerHunt(new Date(), 0, 0, user);
+    this.currentScavengerHunt = new ScavengerHunt(new Date(), user);
     this.currentTask = this.currentScavengerHunt.tasks[this.currentIndex];
     this.currentTask.start();
 
@@ -56,5 +56,47 @@ export class ScavengerHuntService {
     this.currentTask = undefined;
     this.currentIndex = 0;
     this.route.navigateByUrl('/tabs');
+  }
+
+  getAllCutlets() {
+    if (this.currentScavengerHunt == undefined) return 0;
+
+    let cutlets: number = 0;
+
+    this.currentScavengerHunt.tasks.forEach(task => {
+      if (task.isCompleted) {
+        cutlets += task.steaks;
+      }
+    });
+
+    return cutlets;
+  }
+
+  getAllPotatoes() {
+    if (this.currentScavengerHunt == undefined) return 0;
+
+    let potatoes: number = 0;
+
+    this.currentScavengerHunt.tasks.forEach(task => {
+      if (task.isCompleted) {
+        potatoes += task.potatoes;
+      }
+    });
+
+    return potatoes;
+  }
+
+  getTotalTimeSeconds() {
+    if (this.currentScavengerHunt == undefined) return 0;
+
+    let totalTime: number = 0;
+
+    this.currentScavengerHunt.tasks.forEach(task => {
+      if (task.isCompleted) {
+        totalTime += task.timeEnd!.getSeconds() - task.timeStart!.getSeconds();
+      }
+    });
+
+    return totalTime;
   }
 }

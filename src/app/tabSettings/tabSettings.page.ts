@@ -34,7 +34,7 @@ export class TabSettingsPage {
   }
 
   DevInitializeTask(taskIndex: number) {
-    this.scavengerHuntService.currentScavengerHunt = new ScavengerHunt(new Date(), 0, 0, new User('The almighty', 'God'));
+    this.scavengerHuntService.currentScavengerHunt = new ScavengerHunt(new Date(), new User('The almighty', 'God'));
     this.scavengerHuntService.currentIndex = taskIndex;
     this.scavengerHuntService.currentTask = this.scavengerHuntService.currentScavengerHunt.tasks[taskIndex];
     this.scavengerHuntService.navigateToNextTask();
