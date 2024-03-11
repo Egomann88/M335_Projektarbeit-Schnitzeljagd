@@ -4,7 +4,7 @@ import { TaskDetails } from './taskDetails';
 
 export const taskUrls: any = {
   1: "/geoloaction",
-  2: "",
+  2: "/distance",
   3: "/qr-code",
   4: "",
   5: "/device-status",
