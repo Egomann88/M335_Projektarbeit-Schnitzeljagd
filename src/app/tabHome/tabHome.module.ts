@@ -8,7 +8,10 @@ import { TabHomePageRoutingModule } from './tabHome-routing.module';
 import {LeaderboardComponent} from "../leaderboard/leaderboard.component";
 
 @NgModule({
-  imports: [IonicModule, CommonModule, FormsModule, TabHomePageRoutingModule],
+    imports: [IonicModule, CommonModule, FormsModule, TabHomePageRoutingModule],
     declarations: [TabHomePage, LeaderboardComponent],
+    exports: [
+        LeaderboardComponent
+    ]
 })
 export class TabHomePageModule { }
