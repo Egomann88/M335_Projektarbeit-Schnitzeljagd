@@ -30,17 +30,44 @@
       <ion-button color="primary" (click)="saveUser()">Speichern</ion-button>
     </ion-item>
   </ion-toolbar>
-  testlinks
-  <a routerLink="/geoloaction">
-    Geolocation
-  </a>
-  <a routerLink="/qr-code">
-    Kamera
-  </a>
-  <a routerLink="/wlan">
-    Wlan
-  </a>
-  <a routerLink="/device-status">
-    Device Status
-  </a>
+  <ion-list>
+    <ion-item style="display: flex; align-items: center;">
+      <ion-text>
+        <h3>Test Links</h3>
+      </ion-text>
+      <ion-label style="margin: 8px 0 0 10px;">
+        <ion-icon color="dark" size="large" name="code-working-outline"></ion-icon>
+      </ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-button fill="clear" (click)="DevInitializeTask(0)">
+        Geolocation
+      </ion-button>
+    </ion-item>
+    <ion-item>
+      <ion-button fill="clear" (click)="DevInitializeTask(1)">
+        Geolocation 2
+      </ion-button>
+    </ion-item>
+    <ion-item>
+      <ion-button fill="clear" (click)="DevInitializeTask(2)">
+        Kamera
+      </ion-button>
+    </ion-item>
+    <ion-item>
+      <ion-button fill="clear" (click)="DevInitializeTask(3)">
+        Sensor
+      </ion-button>
+    </ion-item>
+    <ion-item>
+      <ion-button fill="clear" (click)="DevInitializeTask(4)">
+        Device Status
+      </ion-button>
+    </ion-item>
+    <ion-item>
+      <ion-button fill="clear" (click)="DevInitializeTask(5)">
+        WLAN
+      </ion-button>
+    </ion-item>
+  </ion-list>
 </ion-content>
