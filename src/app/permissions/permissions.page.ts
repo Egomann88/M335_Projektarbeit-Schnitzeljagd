@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Geolocation } from "@capacitor/geolocation";
 import { BarcodeScanner } from "@capacitor-mlkit/barcode-scanning";
+import {ScavengerHuntService} from "../../services/scavenger-hunt-service.service";
 
 @Component({
   selector: 'app-permissions',
@@ -16,11 +17,16 @@ export class PermissionsPage implements OnInit {
   cameraBarcodePermission: boolean = false;
   cameraError: string = "";
 
-  constructor() { }
+  constructor(private scavangeHunt: ScavengerHuntService) { }
 
   async ngOnInit() {
     await this.checkGeoPermission();
     await this.checkCameraPermission();
+  }
+
+  async startHunt(){
+    this.scavangeHunt.permissionsChecked = true;
+    this.scavangeHunt.startScavenge();
   }
 
   async checkGeoPermission() {

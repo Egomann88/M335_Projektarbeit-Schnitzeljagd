@@ -12,10 +12,20 @@ export class ScavengerHuntService {
   currentScavengerHunt?: ScavengerHunt;
   currentTask?: Task;
   currentIndex: number = 0;
+  permissionsChecked: boolean = false;
   constructor(private route: Router) { }
 
-  startScavenge(user: User) {
-    this.currentScavengerHunt = new ScavengerHunt(new Date(), user);
+  startScavenge(user?: User) {
+    if(user != undefined)
+      this.currentScavengerHunt = new ScavengerHunt(new Date(), user);
+
+    if(!this.permissionsChecked){
+      // this.route.navigateByUrl("/permissions")
+    }
+
+    if(this.currentScavengerHunt == undefined)
+      return;
+
     this.currentTask = this.currentScavengerHunt.tasks[this.currentIndex];
     this.currentTask.start();
 
@@ -39,6 +49,10 @@ export class ScavengerHuntService {
     let currentId = this.currentTask.id;
     let url: string = taskUrls[currentId];
     this.route.navigate([url]);
+  }
+
+  public PermissionsChecked(){
+    this.permissionsChecked = true;
   }
 
   huntCompleted() {
