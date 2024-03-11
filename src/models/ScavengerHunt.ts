@@ -4,7 +4,7 @@ import { TaskDetails } from './taskDetails';
 
 export const taskUrls: any = {
   1: "/geoloaction",
-  2: "",
+  2: "/distance",
   3: "/qr-code",
   4: "/sensor",
   5: "/device-status",
@@ -33,6 +33,7 @@ export class ScavengerHunt {
       new Task(
         1,
         'Standort',
+        120,
         'Gehe zur grossen Schreibmaschine im Zuppa Buona!',
         new TaskDetails(
           'Lost in GPSlation',
@@ -42,6 +43,7 @@ export class ScavengerHunt {
       new Task(
         2,
         'Strecke laufen',
+        80,
         'Laufe 20m!',
         new TaskDetails(
           'Marathon oder Snickers?',
@@ -51,6 +53,7 @@ export class ScavengerHunt {
       new Task(
         3,
         'QR-Code',
+        30,
         'Scanne den QR-Code!',
         new TaskDetails(
           'Code Cracker 3000',
@@ -60,6 +63,7 @@ export class ScavengerHunt {
       new Task(
         4,
         'Pusten',
+        20,
         'Puste ins Mikrofon!',
         new TaskDetails(
           'Aus der Puste?',
@@ -69,6 +73,7 @@ export class ScavengerHunt {
       new Task(
         5,
         'Aufladen',
+        30,
         'Lade dein Gerät auf!',
         new TaskDetails(
           'Lade-Lama',
@@ -78,6 +83,7 @@ export class ScavengerHunt {
       new Task(
         6,
         'WLAN',
+        30,
         'Wechsele das WLAN Netzwerk!',
         new TaskDetails(
           'Der Verbindungsvoyeur',

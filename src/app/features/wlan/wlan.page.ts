@@ -35,6 +35,10 @@ export class WlanPage implements OnInit {
     await this.getCurrentStatus();
   }
 
+  async completed() {
+    await this.scavengerHuntService.completeTask()
+  }
+
   // Get the current network status
   getCurrentStatus = async () => {
     const status = await Network.getStatus();

@@ -5,7 +5,7 @@ describe('GeoloactionPage', () => {
   let component: GeoloactionPage;
   let fixture: ComponentFixture<GeoloactionPage>;
 
-  beforeEach(async(() => {
+  beforeEach((() => {
     fixture = TestBed.createComponent(GeoloactionPage);
     component = fixture.componentInstance;
     fixture.detectChanges();

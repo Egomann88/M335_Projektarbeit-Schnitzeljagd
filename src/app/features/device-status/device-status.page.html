@@ -12,4 +12,6 @@
       <!--<ion-icon name="square-outline" *ngFor="let i of [1,2,3,4,5]" [color]="getColor(i)" size="large"></ion-icon>-->
     </ion-label>
   </ion-item>
+  <app-dev-button (devFunction)="completed()"></app-dev-button>
+  <app-details-button [details]="task?.details!"></app-details-button>
 </ion-content>

@@ -3,6 +3,7 @@ import { Geolocation } from '@capacitor/geolocation';
 import { Task } from 'src/models/task';
 import { ScavengerHuntService } from 'src/services/scavenger-hunt-service.service';
 import { GeolocationServiceService } from 'src/services/geolocation-service.service'
+import { Haptics } from "@capacitor/haptics";
 
 @Component({
   selector: 'app-geoloaction',
@@ -20,11 +21,15 @@ export class GeoloactionPage implements OnInit {
 
   async ngOnInit() {
     this.task = this.scavengerHuntService.currentTask;
-
-    await this.geolocationService.watchPosition()
+    await this.geolocationService.resetService();
+    await this.geolocationService.watchPosition();
   }
 
-  async getCurrentPosition(){
+  async completed() {
+    await this.scavengerHuntService.completeTask()
+  }
+
+  async getCurrentPosition() {
     await this.geolocationService.getCurrentPosition()
   }
 }

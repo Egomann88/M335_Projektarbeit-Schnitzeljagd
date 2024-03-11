@@ -24,6 +24,10 @@ export class DeviceStatusPage implements OnInit {
     await this.lifecycle();
   }
 
+  async completed() {
+    await this.scavengerHuntService.completeTask()
+  }
+
   // Lifecycle of the loading bar
   async lifecycle() {
 
