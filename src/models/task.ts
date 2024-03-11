@@ -12,6 +12,11 @@ export class Task {
   mainInstruction: string;
   details: TaskDetails;
 
+  //timer
+  interval?: any;
+  play: boolean = false;
+  seconds: number = 0;
+
   constructor(id: number, name: string, secondsUntilPotato: number, mainInstruction: string, details: TaskDetails) {
     this.id = id;
     this.name = name;
@@ -23,7 +28,26 @@ export class Task {
     this.details = details;
   }
 
+  public start(){
+    this.timeStart = new Date();
+    this.startTimer();
+  }
+
+  private startTimer() {
+    this.play = true;
+    this.interval = setInterval(async () => {
+      this.seconds++;
+    }, 1000);
+  }
+
+  private pauseTimer() {
+    if(this.interval == undefined)
+      clearInterval(this.interval);
+    this.play = false;
+  }
+
   completeTask() {
+    this.pauseTimer();
     this.timeEnd = new Date();
 
     if (this.timeStart === undefined) throw new Error("timeStart is undefined");
