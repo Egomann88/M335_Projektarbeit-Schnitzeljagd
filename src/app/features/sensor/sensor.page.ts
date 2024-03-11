@@ -24,10 +24,9 @@ export class SensorPage implements OnInit {
     let accelHandler: PluginListenerHandle;
 
     accelHandler = Motion.addListener('orientation', event => {
-      // Annahme: Die horizontale Drehung wird durch die X-Achse repräsentiert.
 
       // x ist die horizontale Drehung
-      this.rotationHorizontal = Math.round(event.beta);
+      this.rotationHorizontal = Math.round(event.alpha);
       console.log(this.rotationHorizontal);
 
       // Überprüfen, ob der Benutzer das Handy um 180 Grad gedreht hat
