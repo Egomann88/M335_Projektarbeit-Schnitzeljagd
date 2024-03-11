@@ -12,7 +12,7 @@ export class Task {
   mainInstruction: string;
   details: TaskDetails;
 
-  //timer
+  // timer
   interval?: any;
   play: boolean = false;
   seconds: number = 0;
@@ -28,7 +28,7 @@ export class Task {
     this.details = details;
   }
 
-  public start(){
+  public start() {
     this.timeStart = new Date();
     this.startTimer();
   }
@@ -41,8 +41,7 @@ export class Task {
   }
 
   private pauseTimer() {
-    if(this.interval == undefined)
-      clearInterval(this.interval);
+    if (this.interval == undefined) clearInterval(this.interval);
     this.play = false;
   }
 
