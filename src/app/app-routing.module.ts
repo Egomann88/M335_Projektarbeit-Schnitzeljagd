@@ -24,17 +24,20 @@ const routes: Routes = [
   },
   {
     path: 'device-status',
-    loadChildren: () => import('./features/device-status/device-status.module').then( m => m.DeviceStatusPageModule)
-  },
-  {
-    path: 'permissions',
-    loadChildren: () => import('./permissions/permissions.module').then( m => m.PermissionsPageModule)
+    loadChildren: () => import('./features/device-status/device-status.module').then(m => m.DeviceStatusPageModule)
   },
   {
     path: 'distance',
-    loadChildren: () => import('./features/distance/distance.module').then( m => m.DistancePageModule)
+    loadChildren: () => import('./features/distance/distance.module').then(m => m.DistancePageModule)
+  },
+  {
+    path: 'permissions',
+    loadChildren: () => import('./permissions/permissions.module').then(m => m.PermissionsPageModule)
+  },
+  {
+    path: 'huntfin',
+    loadChildren: () => import('./huntfin/huntfin.module').then(m => m.HuntfinPageModule)
   }
-
 ];
 @NgModule({
   imports: [
