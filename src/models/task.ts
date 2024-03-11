@@ -12,10 +12,10 @@ export class Task {
   mainInstruction: string;
   details: TaskDetails;
 
-  constructor(id: number, name: string, mainInstruction: string, details: TaskDetails) {
+  constructor(id: number, name: string, secondsUntilPotato: number, mainInstruction: string, details: TaskDetails) {
     this.id = id;
     this.name = name;
-    this.steaks = 0;
+    this.steaks = 1;
     this.potatoes = 0;
     this.isCompleted = false;
     this.secondsUntilPotato = secondsUntilPotato;
@@ -23,11 +23,23 @@ export class Task {
     this.details = details;
   }
 
-  completeTask(start: Date, end: Date, steaks: number, potatoes: number) {
-    this.timeStart = start;
-    this.timeEnd = end;
-    this.steaks = steaks;
-    this.potatoes = potatoes;
+  completeTask() {
+    this.timeEnd = new Date();
+
+    if (this.timeStart === undefined) throw new Error("timeStart is undefined");
+
+    let start = this.timeStart;
+    let end = this.timeEnd;
+
+    // Berechne die Zeitdauer in Sekunden
+    const durationInSeconds = (end.getTime() - start.getTime()) / 1000;
+
+    // Überprüfe, ob die Zeitdauer größer ist als secondsUntilPotato
+    if (durationInSeconds > this.secondsUntilPotato) {
+      this.potatoes++; // Erhöhe die Anzahl der Kartoffeln um 1
+    }
+
     this.isCompleted = true;
   }
+
 }

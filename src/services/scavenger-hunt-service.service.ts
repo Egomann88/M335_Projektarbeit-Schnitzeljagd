@@ -14,8 +14,7 @@ export class ScavengerHuntService {
   constructor(private route: Router) { }
 
   startScavenge(user: User) {
-    let startDate = new Date();
-    this.currentScavengerHunt = new ScavengerHunt(startDate, 0, 0, user);
+    this.currentScavengerHunt = new ScavengerHunt(new Date(), 0, 0, user);
     this.currentTask = this.currentScavengerHunt.tasks[this.currentIndex];
 
     // navigate to first task
@@ -25,7 +24,7 @@ export class ScavengerHuntService {
   completeTask() {
     if (this.currentTask == undefined) return;
 
-    this.currentTask.completeTask(new Date(), new Date(), 1, 1);
+    this.currentTask.completeTask();
     this.currentTask = this.currentScavengerHunt?.tasks[++this.currentIndex];
     this.navigateToNextTask();
   }
