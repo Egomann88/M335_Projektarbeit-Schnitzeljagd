@@ -24,6 +24,10 @@ export class QrCodePage implements OnInit {
     });
   }
 
+  async completed() {
+    await this.scavengerHuntService.completeTask()
+  }
+
   async scan(): Promise<void> {
     const granted = await this.requestPermissions();
     if (!granted) {

@@ -3,6 +3,7 @@ import { ScavengerHunt, taskUrls } from "../models/ScavengerHunt";
 import { User } from "../models/User";
 import { Task } from "../models/task";
 import { Router } from "@angular/router";
+import { Haptics } from '@capacitor/haptics';
 
 @Injectable({
   providedIn: 'root'
@@ -21,8 +22,9 @@ export class ScavengerHuntService {
     this.navigateToNextTask();
   }
 
-  completeTask() {
+  async completeTask() {
     if (this.currentTask == undefined) return;
+    await Haptics.vibrate();
 
     this.currentTask.completeTask();
     this.currentTask = this.currentScavengerHunt?.tasks[++this.currentIndex];

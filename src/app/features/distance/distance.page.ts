@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {ScavengerHuntService} from "../../../services/scavenger-hunt-service.service";
-import {GeolocationServiceService} from "../../../services/geolocation-service.service";
-import {Task} from "../../../models/task";
+import { ScavengerHuntService } from "../../../services/scavenger-hunt-service.service";
+import { GeolocationServiceService } from "../../../services/geolocation-service.service";
+import { Task } from "../../../models/task";
 
 @Component({
   selector: 'app-distance',
@@ -22,7 +22,11 @@ export class DistancePage implements OnInit {
     await this.geolocationService.watchPosition();
   }
 
-  async getCurrentPosition(){
+  async completed() {
+    await this.scavengerHuntService.completeTask()
+  }
+
+  async getCurrentPosition() {
     await this.geolocationService.getCurrentPosition()
   }
 }
