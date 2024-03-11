@@ -58,9 +58,8 @@ export class DeviceStatusPage implements OnInit {
 
   // Sets the color of the loading bar using a float
   getColorIteration(index: number) {
-    if (index <= this.loadingField) {
-      return 'success';
-    }
+    if (index <= this.loadingField) return 'success';
+
     return 'danger';
   }
 
@@ -68,31 +67,24 @@ export class DeviceStatusPage implements OnInit {
   getColor() {
     if (this.loadingDone) return 'success';
 
-    if (this.loadingStatus) {
-      return 'warning';
-    } else {
-      return 'danger';
-    }
+    if (this.loadingStatus) return 'warning';
+    else return 'danger';
   }
 
   // Sets the text of the loading bar
   getLoadingText() {
     if (this.loadingDone) return 'Ladevorgang abgeschlossen';
 
-    if (this.loadingStatus) {
-      return 'Ladevorgang läuft...';
-    } else {
-      return 'Kein Ladegerät angeschlossen';
-    }
-
+    if (this.loadingStatus) return 'Ladevorgang läuft...';
+    else return 'Kein Ladegerät angeschlossen';
   }
 
   // Task is finished
   finishedTask() {
     this.loadingDone = true;
-    console.log("Task finished");
+    console.log("DeviceStatusPage: Task finished!");
+    this.completed();
   }
-
 
   protected readonly batteryCharging = batteryCharging;
 }
