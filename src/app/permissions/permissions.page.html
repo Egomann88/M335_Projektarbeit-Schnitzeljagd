@@ -1,0 +1,17 @@
+<app-task-header [title]="'Permissions'"></app-task-header>
+
+<ion-content [fullscreen]="true">
+  {{error}}
+  <ion-label>
+    <h1>Location</h1>
+    <ion-button [color]="geoCoarsePermission && geoLocationPermission ? 'success' : 'danger'" (click)="requestGeoPermission()">
+      {{ geoCoarsePermission && geoLocationPermission ? 'Granted' : 'Request' }}
+    </ion-button>
+  </ion-label>
+  <ion-label>
+    <h1>Camera</h1>
+    <ion-button [color]="cameraBarcodePermission ? 'success' : 'danger'" (click)="requestCameraPermission()">
+      {{ cameraBarcodePermission ? 'Granted' : 'Request' }}
+    </ion-button>
+  </ion-label>
+</ion-content>
