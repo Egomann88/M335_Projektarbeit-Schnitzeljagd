@@ -2,6 +2,6 @@
 
 <ion-content>
   {{ rotationHorizontal }}
-  <br />
+  <ion-icon name="phone-portrait-outline" [style.transform]="'rotate(' + rotationHorizontal + 'deg)'"></ion-icon>
   {{ isCompleted }}
 </ion-content>
