@@ -8,6 +8,7 @@ export class Task {
   steaks: number;
   potatoes: number;
   isCompleted: boolean;
+  secondsUntilPotato: number;
   mainInstruction: string;
   details: TaskDetails;
 
@@ -17,6 +18,7 @@ export class Task {
     this.steaks = 0;
     this.potatoes = 0;
     this.isCompleted = false;
+    this.secondsUntilPotato = secondsUntilPotato;
     this.mainInstruction = mainInstruction;
     this.details = details;
   }
