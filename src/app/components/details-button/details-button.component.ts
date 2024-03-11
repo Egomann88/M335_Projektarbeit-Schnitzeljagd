@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { AlertService } from "../../services/AlertService";
+import { AlertService } from "../../../services/AlertService";
 import { TaskDetails } from 'src/models/taskDetails';
 
 @Component({

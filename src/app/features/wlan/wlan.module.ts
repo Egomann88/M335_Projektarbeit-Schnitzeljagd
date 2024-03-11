@@ -7,8 +7,8 @@ import { IonicModule } from '@ionic/angular';
 import { WlanPageRoutingModule } from './wlan-routing.module';
 
 import { WlanPage } from './wlan.page';
-import {DetailsButtonComponent} from "../details-button/details-button.component";
-import {TaskHeaderComponent} from "../task-header/task-header.component";
+import {DetailsButtonComponent} from "../../components/details-button/details-button.component";
+import {TaskHeaderComponent} from "../../components/task-header/task-header.component";
 
 @NgModule({
     imports: [

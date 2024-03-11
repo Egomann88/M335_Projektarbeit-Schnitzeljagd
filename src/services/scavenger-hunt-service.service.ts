@@ -38,6 +38,17 @@ export class ScavengerHuntService {
     this.route.navigate([url]);
   }
 
+  huntCompleted() {
+    // if all tasks are completed, return true
+    let isCompleted: boolean = true;
+    this.currentScavengerHunt!.tasks.forEach(task => {
+      if (task.isCompleted == false) {
+        isCompleted = false;
+        return;
+      }
+    });
+  }
+
   cancelScavenge() {
     this.currentScavengerHunt = undefined;
     this.currentTask = undefined;

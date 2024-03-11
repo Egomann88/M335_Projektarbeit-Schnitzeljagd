@@ -8,26 +8,31 @@ const routes: Routes = [
   },
   {
     path: 'geoloaction',
-    loadChildren: () => import('./geoloaction/geoloaction.module').then(m => m.GeoloactionPageModule)
+    loadChildren: () => import('./features/geoloaction/geoloaction.module').then(m => m.GeoloactionPageModule)
   },
   {
     path: 'wlan',
-    loadChildren: () => import('./wlan/wlan.module').then( m => m.WlanPageModule)
+    loadChildren: () => import('./features/wlan/wlan.module').then(m => m.WlanPageModule)
   },
   {
     path: 'qr-code',
-    loadChildren: () => import('./qr-code/qr-code.module').then(m => m.QrCodePageModule)
+    loadChildren: () => import('./features/qr-code/qr-code.module').then(m => m.QrCodePageModule)
   },
   {
     path: 'test',
     loadChildren: () => import('./test/test.module').then(m => m.TestPageModule)
-  },  {
+  },
+  {
     path: 'device-status',
-    loadChildren: () => import('./device-status/device-status.module').then( m => m.DeviceStatusPageModule)
+    loadChildren: () => import('./features/device-status/device-status.module').then( m => m.DeviceStatusPageModule)
   },
   {
     path: 'permissions',
     loadChildren: () => import('./permissions/permissions.module').then( m => m.PermissionsPageModule)
+  },
+  {
+    path: 'distance',
+    loadChildren: () => import('./features/distance/distance.module').then( m => m.DistancePageModule)
   }
 
 ];
