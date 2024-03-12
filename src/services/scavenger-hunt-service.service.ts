@@ -10,6 +10,7 @@ import { ToastService } from './toast.service';
   providedIn: 'root'
 })
 export class ScavengerHuntService {
+  scavanegerHunts: ScavengerHunt[] = [];
   currentScavengerHunt?: ScavengerHunt;
   currentTask?: Task;
   currentIndex: number = 0;
@@ -89,6 +90,13 @@ export class ScavengerHuntService {
     return;
   }
 
+  saveScavenge() {
+    if (this.currentScavengerHunt == undefined) return;
+
+    this.scavanegerHunts.push(this.currentScavengerHunt); // save current hunt
+    this.cancelScavenge();  // reset current hunt
+  }
+
   getAllItems(itemType: string): number {
     if (this.currentScavengerHunt == undefined) return 0;
 
@@ -111,5 +119,9 @@ export class ScavengerHuntService {
     });
 
     return count;
+  }
+
+  public getAllScavengerHunts(): ScavengerHunt[] {
+    return this.scavanegerHunts;
   }
 }
