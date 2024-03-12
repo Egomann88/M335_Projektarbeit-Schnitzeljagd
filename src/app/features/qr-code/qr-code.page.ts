@@ -14,6 +14,7 @@ export class QrCodePage implements OnInit {
   isSupported = false;
   barcodes: Barcode[] = [];
   correctBarcodeValue = 'Freundschaft ist Magie';
+  falseCode: boolean = false;
 
   constructor(private alertService: AlertService, private scavengerHuntService: ScavengerHuntService) { }
 
@@ -50,5 +51,6 @@ export class QrCodePage implements OnInit {
     this.barcodes.forEach(barcode => {
       if (barcode.rawValue === this.correctBarcodeValue) this.completed();
     });
+    this.falseCode = true;
   }
 }

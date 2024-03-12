@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { SCAVENGERHUNTS } from "../../mocks/ScavengerHuntMock";
 import { ScavengerHunt } from "../../models/ScavengerHunt";
 import { ScavengerHuntService } from 'src/services/scavenger-hunt-service.service';
 
@@ -9,13 +8,11 @@ import { ScavengerHuntService } from 'src/services/scavenger-hunt-service.servic
   styleUrls: ['./leaderboard.component.scss'],
 })
 export class LeaderboardComponent implements OnInit {
-  scavengerHunts: ScavengerHunt[] = SCAVENGERHUNTS;
-  scavengerHuntService: ScavengerHuntService;
+  scavengerHunts: ScavengerHunt[] = [];
 
-  constructor(private _scavengerHuntService: ScavengerHuntService) {
-    this.scavengerHuntService = _scavengerHuntService;
+  constructor(public scavengerHuntService: ScavengerHuntService) { }
+
+  ngOnInit() {
+    this.scavengerHunts = this.scavengerHuntService.getAllScavengerHunts();
   }
-
-  ngOnInit() { }
-
 }
