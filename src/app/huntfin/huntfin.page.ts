@@ -57,6 +57,6 @@ export class HuntfinPage implements OnInit {
       if (hunt.seconds > this.svHunt?.seconds!) return (i + 1) + "."; // any rank
     }
 
-    return scavanegerHunts.length + ".";  // last if no other hunts are faster
+    return scavanegerHunts.length + 1 + ".";  // last if no other hunts are faster
   }
 }
