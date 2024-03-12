@@ -10,9 +10,9 @@ export class GeolocationServiceService {
   public distance : number = 100000;
   public currentLocation: coords = new coords(0,0)
   public distanceReached: boolean = false;
-  private destinationLatitude: number = 47.071610;
-  private destinationLongitude: number = 8.348653;
-  private targetDistance: number = 10;
+  private destinationLatitude: number = 47.071652;
+  private destinationLongitude: number = 8.348674;
+  private targetDistance: number = 15;
 
   //for distance
   public metresTraveled: number = 0;
