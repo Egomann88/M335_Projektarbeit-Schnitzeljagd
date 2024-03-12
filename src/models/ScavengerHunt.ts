@@ -33,7 +33,7 @@ export class ScavengerHunt {
         'Gehe zur grossen Schreibmaschine im Zuppa Buona!',
         new TaskDetails(
           'Lost in GPSlation',
-          'Du musst dich zu den angegebenen Standorten begeben. Deine Anwesenheit wird automatisch erkannt. Diese Aufgabe braucht Standort Berechtigungen und der Standort des Gerätes muss aktiviert sein. '
+          'Du musst dich zu den angegebenen Standorten begeben. Deine Anwesenheit wird automatisch erkannt. Diese Aufgabe braucht Standort Berechtigungen und der Standort des Gerätes muss aktiviert sein.'
         )
       ),
       new Task(
@@ -53,17 +53,17 @@ export class ScavengerHunt {
         'Scanne den QR-Code!',
         new TaskDetails(
           'Code Cracker 3000',
-          'Diese Aufgabe braucht Kamera Berechtigungen. Du musst den richtigen QR-Code scannen. Ist der Code falsch oder nicht lesbar, wird es dir angezeigt. Wenn der richtige Code gescannt wurde, wird die Aufgabe ohne weiteres erfüllt.'
+          'Diese Aufgabe braucht Kamera Berechtigungen. Du musst den richtigen QR-Code scannen. Ist der Code falsch oder nicht lesbar, wird es dir angezeigt.'
         )
       ),
       new Task(
         4,
-        'Motion',
+        'Sensor',
         20,
         'Das Handy soll nach unten zeigen!',
         new TaskDetails(
           'Umgedrehte Welt',
-          'Richte dein Mobiltelefon so aus, dass das Handy auf dem Bildschirm nach unten zeigt.'
+          'Drehe dein Gerät, bis die angezeigte Grafik grün wird.'
         )
       ),
       new Task(
@@ -73,7 +73,7 @@ export class ScavengerHunt {
         'Lade dein Gerät auf!',
         new TaskDetails(
           'Lade-Lama',
-          'Stecke dein Gerät an das Ladegerät und warte einen Moment.'
+          'Stecke dein Gerät an das Ladegerät und warte bis die Batterie aufgeladen ist.'
         )
       ),
       new Task(
