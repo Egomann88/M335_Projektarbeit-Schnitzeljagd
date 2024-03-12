@@ -23,24 +23,22 @@ export class SensorPage implements OnInit {
 
     let accelHandler: PluginListenerHandle;
 
-    accelHandler = Motion.addListener('orientation', event => {
+    accelHandler = Motion.addListener('orientation', async event => {
 
       // x ist die horizontale Drehung
       this.rotationHorizontal = Math.round(event.alpha);
       console.log(this.rotationHorizontal);
 
-      // Überprüfen, ob der Benutzer das Handy um 180 Grad gedreht hat
       if (this.rotationHorizontal >= 160 && this.rotationHorizontal <= 190) {
         console.log("Task completed");
-        // Füge hier deinen Code für die abgeschlossene Aufgabe hinzu
-        // Beispiel: this.scavengerHuntService.completeTask();
-        this.isCompleted = true;
-        // Zurücksetzen der Rotation für weitere Überprüfungen
+        if(!this.isCompleted)
+          await this.completed()
       }
     });
   }
 
   async completed(){
+    this.isCompleted = true;
     await this.scavengerHuntService.completeTask();
   }
 }
