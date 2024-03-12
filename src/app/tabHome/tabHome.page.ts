@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { ScavengerHunt } from 'src/models/ScavengerHunt';
 import { User } from 'src/models/User';
 import { AlertService } from 'src/services/AlertService';
+import { ToastService } from 'src/services/toast.service';
 import { UserService } from 'src/services/user.service';
 import { UserHelper } from 'src/helpers/UserHelper';
 import { ScavengerHuntService } from 'src/services/scavenger-hunt-service.service';
@@ -17,7 +18,12 @@ export class TabHomePage {
   user: User = new User('', '');
   userValid: boolean = false;
 
-  constructor(private alertService: AlertService, private userService: UserService, private scavengerHuntService: ScavengerHuntService) { }
+  constructor(
+    private alertService: AlertService,
+    private toastService: ToastService,
+    private userService: UserService,
+    private scavengerHuntService: ScavengerHuntService
+  ) { }
 
   // must be called every time when the view loads -> user can be changed in the settings
   async ionViewWillEnter() {
@@ -44,7 +50,7 @@ export class TabHomePage {
       const handler = (data: any) => {
         const user = new User(data[0], data[1]);
         if (!this.isUserNameValid(user)) {
-          this.alertService.openErrorAlert("Keinen gültigen Namen eingegeben.");
+          this.toastService.presentToast('Ungültiger Name', 'danger');
           return;
         }
 

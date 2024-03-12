@@ -4,6 +4,7 @@ import { User } from "../models/User";
 import { Task } from "../models/task";
 import { Router } from "@angular/router";
 import { Haptics } from '@capacitor/haptics';
+import { ToastService } from './toast.service';
 
 @Injectable({
   providedIn: 'root'
@@ -13,18 +14,17 @@ export class ScavengerHuntService {
   currentTask?: Task;
   currentIndex: number = 0;
   permissionsChecked: boolean = false;
-  constructor(private route: Router) { }
+
+  constructor(private route: Router, private toastService: ToastService) { }
 
   startScavenge(user?: User) {
-    if(user != undefined)
-      this.currentScavengerHunt = new ScavengerHunt(new Date(), user);
+    if (user != undefined) this.currentScavengerHunt = new ScavengerHunt(new Date(), user);
 
-    if(!this.permissionsChecked){
+    if (!this.permissionsChecked) {
       // this.route.navigateByUrl("/permissions")
     }
 
-    if(this.currentScavengerHunt == undefined)
-      return;
+    if (this.currentScavengerHunt == undefined) return;
 
     this.currentTask = this.currentScavengerHunt.tasks[this.currentIndex];
     this.currentTask.start();
@@ -36,11 +36,23 @@ export class ScavengerHuntService {
   async completeTask() {
     if (this.currentTask == undefined || this.currentScavengerHunt == undefined) return;
     await Haptics.vibrate();
+    this.currentTask.completeTask();  // stops timer
+    this.toastService.presentToast("Aufgabe abgeschlossen", "success", 800);
 
-    this.currentTask.completeTask();
-    this.currentTask = this.currentScavengerHunt.tasks[++this.currentIndex];
-    this.currentTask.start();
-    this.navigateToNextTask();
+    setTimeout(() => {
+      if (this.currentScavengerHunt == undefined) return;
+
+      if (this.huntCompleted()) { // if all tasks are completed
+        this.route.navigate(['huntfin']);
+        return;
+      }
+
+      // hunt not completed, navigate to next task
+      this.currentTask = this.currentScavengerHunt.tasks[++this.currentIndex];
+      this.currentTask.start(); // start next timer
+      this.navigateToNextTask();
+    }, 800);
+
   }
 
   navigateToNextTask() {
@@ -51,7 +63,7 @@ export class ScavengerHuntService {
     this.route.navigate([url]);
   }
 
-  public PermissionsChecked(){
+  public PermissionsChecked() {
     this.permissionsChecked = true;
   }
 
@@ -64,6 +76,7 @@ export class ScavengerHuntService {
         return;
       }
     });
+    return isCompleted;
   }
 
   cancelScavenge() {
@@ -73,45 +86,27 @@ export class ScavengerHuntService {
     this.route.navigateByUrl('/tabs');
   }
 
-  getAllCutlets() {
+  getAllItems(itemType: string): number {
     if (this.currentScavengerHunt == undefined) return 0;
 
-    let cutlets: number = 0;
+    let count: number = 0;
 
     this.currentScavengerHunt.tasks.forEach(task => {
       if (task.isCompleted) {
-        cutlets += task.steaks;
+        switch (itemType) {
+          case 'cutlets':
+            count += task.steaks;
+            break;
+          case 'potatoes':
+            count += task.potatoes;
+            break;
+          case 'seconds':
+            count += task.timeEnd!.getSeconds() - task.timeStart!.getSeconds();
+            break;
+        }
       }
     });
 
-    return cutlets;
-  }
-
-  getAllPotatoes() {
-    if (this.currentScavengerHunt == undefined) return 0;
-
-    let potatoes: number = 0;
-
-    this.currentScavengerHunt.tasks.forEach(task => {
-      if (task.isCompleted) {
-        potatoes += task.potatoes;
-      }
-    });
-
-    return potatoes;
-  }
-
-  getTotalTimeSeconds() {
-    if (this.currentScavengerHunt == undefined) return 0;
-
-    let totalTime: number = 0;
-
-    this.currentScavengerHunt.tasks.forEach(task => {
-      if (task.isCompleted) {
-        totalTime += task.timeEnd!.getSeconds() - task.timeStart!.getSeconds();
-      }
-    });
-
-    return totalTime;
+    return count;
   }
 }

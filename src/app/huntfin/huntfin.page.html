@@ -1,30 +1,32 @@
 <app-task-header [title]="'Schnitzeljagt abgeschlossen'"></app-task-header>
 
 <ion-content [fullscreen]="true">
-  <h1 style="text-align: center; color: goldenrod;">
-    <i>
-      Du hast die Schnitzeljagd abgeschlossen!
-    </i>
-  </h1>
-  <!-- stats -->
-  <table>
-    <tr>
-      <th>Zeit</th>
-      <th>🥩</th>
-      <th>🥔</th>
-    </tr>
-    <tr>
-      <td>{{ "12:12.12" }}</td>
-      <td>{{ "2" }}</td>
-      <td>{{ "2" }}</td>
-    </tr>
-  </table>
+  <div style="padding: 0 20px 0 20px; text-align: center;">
+    <h1 style="text-align: center; color: goldenrod;">
+      <i>
+        Du hast die Schnitzeljagd abgeschlossen!
+      </i>
+    </h1>
+    <!-- stats -->
+    <h3>Deine Statistiken:</h3>
+    <table>
+      <tr>
+        <th>Zeit</th>
+        <th>🥩</th>
+        <th>🥔</th>
+      </tr>
+      <tr>
+        <td>{{ "12:12.12" }}</td>
+        <td>{{ "2" }}</td>
+        <td>{{ "2" }}</td>
+      </tr>
+    </table>
 
-  <h3>Deine Platzierung in der Rangliste ist: <span style="font-size: 30px; color: blueviolet;">{{ "1." }}</span></h3>
+    <!-- leaderboard -->
+    <h3>Deine Platzierung ist: <span style="font-size: 30px; color: goldenrod;">{{ "1." }}</span></h3>
+    <app-leaderboard></app-leaderboard>
 
-  <!-- leaderboard -->
-  <app-leaderboard></app-leaderboard>
-
-  <!-- ok btn -->
-  <ion-button expand="block" (click)="submit()">Zurück zur Hauptansicht</ion-button>
+    <!-- ok btn -->
+    <ion-button expand="block" (click)="submit()">Zurück zur Hauptansicht</ion-button>
+  </div>
 </ion-content>

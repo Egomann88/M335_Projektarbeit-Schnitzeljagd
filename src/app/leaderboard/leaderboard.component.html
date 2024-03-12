@@ -11,8 +11,8 @@
         am {{ scavengerHunt.startDate | date:'dd.MM.yyyy'}}
       </h3>
       <p>
-        {{ scavengerHuntService.getAllCutlets() }}x 🥩,
-        {{ scavengerHuntService.getAllPotatoes() }}x 🥔
+        {{ scavengerHuntService.getAllItems("cutlets") }}x 🥩,
+        {{ scavengerHuntService.getAllItems("potatoes") }}x 🥔
       </p>
     </ion-label>
     <!--
@@ -24,7 +24,7 @@
     -->
   </ion-item>
 </ion-list>
-<ng-template #noHunts style="padding: 0 20px 0 20px;">
+<ng-template #noHunts>
   <h2 style="text-align: center;">
     Noch keine Schnitzeljagten vorhanden
   </h2>

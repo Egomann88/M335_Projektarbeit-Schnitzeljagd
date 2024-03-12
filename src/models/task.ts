@@ -51,18 +51,16 @@ export class Task {
 
     if (this.timeStart === undefined) throw new Error("timeStart is undefined");
 
-    let start = this.timeStart;
-    let end = this.timeEnd;
-
-    // Berechne die Zeitdauer in Sekunden
-    const durationInSeconds = (end.getTime() - start.getTime()) / 1000;
-
-    // Überprüfe, ob die Zeitdauer größer ist als secondsUntilPotato
-    if (durationInSeconds > this.secondsUntilPotato) {
-      this.potatoes++; // Erhöhe die Anzahl der Kartoffeln um 1
-    }
+    this.potatoes = this.addPotato(this.timeStart, this.timeEnd);
 
     this.isCompleted = true;
   }
 
+  addPotato(start: Date, end: Date) {
+    const durationInSeconds = (end.getTime() - start.getTime()) / 1000;
+
+    if (durationInSeconds > this.secondsUntilPotato) return 1;
+
+    return 0;
+  }
 }
