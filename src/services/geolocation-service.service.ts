@@ -1,7 +1,7 @@
 import { Injectable, NgZone } from '@angular/core';
-import {Geolocation, Position} from '@capacitor/geolocation';
+import { Geolocation, Position } from '@capacitor/geolocation';
 import { coords, haversineDistance } from "../utils/geolocation.utils";
-import {ScavengerHuntService} from "./scavenger-hunt-service.service";
+import { ScavengerHuntService } from "./scavenger-hunt-service.service";
 
 @Injectable({
   providedIn: 'root'
@@ -25,7 +25,7 @@ export class GeolocationServiceService {
 
   watchId: string = "";
 
-  constructor(private zone: NgZone, private scavengerHuntService : ScavengerHuntService) {
+  constructor(private zone: NgZone, private scavengerHuntService: ScavengerHuntService) {
 
   }
 
@@ -52,47 +52,54 @@ export class GeolocationServiceService {
     this.finishedTask = false;
   }
 
-  public async getCurrentPosition() {
+  public async getCurrentPosition(isDistanceFeature: boolean) {
     const position = await Geolocation.getCurrentPosition();
     // for distance
-    await this.checkLocation(position)
+    await this.checkLocation(position, isDistanceFeature)
   };
 
-  public async watchPosition() {
+  public async watchPosition(isDistanceFeature: boolean) {
     this.watchId = await Geolocation.watchPosition(this.options, (position, err) => {
       if (err) {
         console.error('Error watching position:', err);
       } else {
         this.zone.run(async () => {
-          await this.checkLocation(position)
+          await this.checkLocation(position, isDistanceFeature)
         })
       }
     });
   }
 
-  private async checkLocation(position: Position | null){
+  private async checkLocation(position: Position | null, isDistanceFeature: boolean) {
     if (position) {
       // for distance
-      try {
-        this.updateLastLocation(position.coords.latitude, position.coords.longitude)
-        this.calculateDistance(true)
-        if(this.currentLocation.longitude != 0)
-          this.metresReached = this.checkMetres()
+      if (isDistanceFeature) {
+        try {
+          this.updateLastLocation(position.coords.latitude, position.coords.longitude)
+          this.calculateDistance(true)
+          if (this.currentLocation.longitude != 0)
+            this.metresReached = this.checkMetres()
 
-        if (this.metresReached && !this.finishedTask) {
-          this.finishedTask = true;
-          await this.scavengerHuntService.completeTask()
+          if (this.metresReached && !this.finishedTask) {
+            this.finishedTask = true;
+            await this.scavengerHuntService.completeTask()
+          }
+        } catch (e: any) {
+          console.error("Cannot calculate metres traveled")
         }
-
-      } catch (e: any) {
-        console.error("Cannot calculate metres traveled")
       }
+
 
       // for geolocation
       this.currentLocation.longitude = position.coords.longitude;
       this.currentLocation.latitude = position.coords.latitude;
       this.calculateDistance(false);
       this.distanceReached = this.checkDistance()
+
+      if (!isDistanceFeature && this.distanceReached && !this.finishedTask) {
+        this.finishedTask = true;
+        await this.scavengerHuntService.completeTask()
+      }
     }
   }
 
@@ -110,7 +117,7 @@ export class GeolocationServiceService {
   }
 
   private calculateDistance(isDistance: boolean) {
-    if(isDistance){
+    if (isDistance) {
       this.metresTraveled += haversineDistance(this.currentLocation, this.lastLocation);
       return
     }
