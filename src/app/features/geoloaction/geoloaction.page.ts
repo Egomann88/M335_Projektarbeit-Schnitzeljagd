@@ -20,7 +20,7 @@ export class GeoloactionPage implements OnInit {
   async ngOnInit() {
     this.task = this.scavengerHuntService.currentTask;
     await this.geolocationService.resetService();
-    await this.geolocationService.watchPosition(this.completed);
+    await this.geolocationService.watchPosition();
   }
 
   async completed() {
@@ -28,6 +28,6 @@ export class GeoloactionPage implements OnInit {
   }
 
   async getCurrentPosition() {
-    await this.geolocationService.getCurrentPosition(this.completed)
+    await this.geolocationService.getCurrentPosition()
   }
 }
