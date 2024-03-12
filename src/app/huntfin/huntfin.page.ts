@@ -3,6 +3,7 @@ import { ScavengerHuntService } from 'src/services/scavenger-hunt-service.servic
 import { ScavengerHunt } from 'src/models/ScavengerHunt';
 import { UserHelper } from 'src/helpers/UserHelper';
 import { ApiService } from 'src/services/api.service';
+import { GetTimeHelper } from 'src/helpers/getTime.helper';
 
 @Component({
   selector: 'app-huntfin',
@@ -18,10 +19,15 @@ export class HuntfinPage implements OnInit {
     this.svHunt = this.scavengerHuntService.currentScavengerHunt;
   }
 
+  getTime() {
+    if (this.svHunt == undefined) return;
+
+    return GetTimeHelper.getTime(this.svHunt);
+  }
+
   submit() {
     if (this.svHunt === undefined) return;
 
-    // TODO: User is undefined
     let name = UserHelper.getFullUserName(this.svHunt.user);
     let cutlets = this.svHunt.cutlets.toString();
     let potatoes = this.svHunt.potatoes.toString();
