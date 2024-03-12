@@ -1,7 +1,7 @@
 import { Injectable, NgZone } from '@angular/core';
-import { Geolocation } from '@capacitor/geolocation';
+import { Geolocation, Position } from '@capacitor/geolocation';
 import { coords, haversineDistance } from "../utils/geolocation.utils";
-import {ScavengerHuntService} from "./scavenger-hunt-service.service";
+import { ScavengerHuntService } from "./scavenger-hunt-service.service";
 
 @Injectable({
   providedIn: 'root'
@@ -25,7 +25,7 @@ export class GeolocationServiceService {
 
   watchId: string = "";
 
-  constructor(private zone: NgZone, private scavengerHuntService : ScavengerHuntService) {
+  constructor(private zone: NgZone, private scavengerHuntService: ScavengerHuntService) {
 
   }
 
@@ -52,62 +52,55 @@ export class GeolocationServiceService {
     this.finishedTask = false;
   }
 
-  public async getCurrentPosition() {
-    const coordinates = await Geolocation.getCurrentPosition();
+  public async getCurrentPosition(isDistanceFeature: boolean) {
+    const position = await Geolocation.getCurrentPosition();
     // for distance
-    try {
-      this.updateLastLocation(coordinates.coords.latitude, coordinates.coords.longitude)
-      this.calculateMetres()
-      this.metresReached = this.checkMetres()
-
-      if (this.metresReached && !this.finishedTask) {
-        this.finishedTask = true;
-        await this.scavengerHuntService.completeTask()
-      }
-
-    } catch (e: any) {
-      console.error("Cannot calculate metres traveled")
-    }
-
-    // for geolocation
-    this.currentLocation.latitude = coordinates.coords.latitude;
-    this.currentLocation.longitude = coordinates.coords.longitude;
-    this.calculateDistance();
-    this.distanceReached = this.checkDistance()
+    await this.checkLocation(position, isDistanceFeature)
   };
 
-  public async watchPosition() {
+  public async watchPosition(isDistanceFeature: boolean) {
     this.watchId = await Geolocation.watchPosition(this.options, (position, err) => {
       if (err) {
         console.error('Error watching position:', err);
       } else {
         this.zone.run(async () => {
-          if (position) {
-            // for distance
-            try {
-              this.updateLastLocation(position.coords.latitude, position.coords.longitude)
-              this.calculateMetres()
-              if(this.currentLocation.longitude != 0)
-                this.metresReached = this.checkMetres()
-
-              if (this.metresReached && !this.finishedTask) {
-                this.finishedTask = true;
-                await this.scavengerHuntService.completeTask()
-              }
-
-            } catch (e: any) {
-              console.error("Cannot calculate metres traveled")
-            }
-
-            // for geolocation
-            this.currentLocation.longitude = position.coords.longitude;
-            this.currentLocation.latitude = position.coords.latitude;
-            this.calculateDistance();
-            this.distanceReached = this.checkDistance()
-          }
+          await this.checkLocation(position, isDistanceFeature)
         })
       }
     });
+  }
+
+  private async checkLocation(position: Position | null, isDistanceFeature: boolean) {
+    if (position) {
+      // for distance
+      if (isDistanceFeature) {
+        try {
+          this.updateLastLocation(position.coords.latitude, position.coords.longitude)
+          this.calculateDistance(true)
+          if (this.currentLocation.longitude != 0)
+            this.metresReached = this.checkMetres()
+
+          if (this.metresReached && !this.finishedTask) {
+            this.finishedTask = true;
+            await this.scavengerHuntService.completeTask()
+          }
+        } catch (e: any) {
+          console.error("Cannot calculate metres traveled")
+        }
+      }
+
+
+      // for geolocation
+      this.currentLocation.longitude = position.coords.longitude;
+      this.currentLocation.latitude = position.coords.latitude;
+      this.calculateDistance(false);
+      this.distanceReached = this.checkDistance()
+
+      if (!isDistanceFeature && this.distanceReached && !this.finishedTask) {
+        this.finishedTask = true;
+        await this.scavengerHuntService.completeTask()
+      }
+    }
   }
 
   private updateLastLocation(latitude: number, longitude: number) {
@@ -123,11 +116,12 @@ export class GeolocationServiceService {
     }
   }
 
-  private calculateMetres() {
-    this.metresTraveled += haversineDistance(this.currentLocation, this.lastLocation);
-  }
+  private calculateDistance(isDistance: boolean) {
+    if (isDistance) {
+      this.metresTraveled += haversineDistance(this.currentLocation, this.lastLocation);
+      return
+    }
 
-  private calculateDistance() {
     let destinationCoords = new coords(this.destinationLatitude, this.destinationLongitude)
     this.distance = haversineDistance(destinationCoords, this.currentLocation);
   }
