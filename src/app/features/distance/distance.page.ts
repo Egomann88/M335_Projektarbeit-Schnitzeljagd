@@ -19,7 +19,7 @@ export class DistancePage implements OnInit {
     this.task = this.scavengerHuntService.currentTask;
     await this.geolocationService.resetService();
     await this.geolocationService.initialCheckForMetres();
-    await this.geolocationService.watchPosition();
+    await this.geolocationService.watchPosition(this);
   }
 
   async completed() {
@@ -27,6 +27,6 @@ export class DistancePage implements OnInit {
   }
 
   async getCurrentPosition() {
-    await this.geolocationService.getCurrentPosition()
+    await this.geolocationService.getCurrentPosition(this)
   }
 }
