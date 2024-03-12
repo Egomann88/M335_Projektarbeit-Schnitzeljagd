@@ -25,6 +25,10 @@ export class TabHomePage {
     private scavengerHuntService: ScavengerHuntService
   ) { }
 
+  async ngOnInit() {
+    await this.scavengerHuntService.assignScavengerHunt();
+  }
+
   // must be called every time when the view loads -> user can be changed in the settings
   async ionViewWillEnter() {
     this.user = await this.userService.getUser();
