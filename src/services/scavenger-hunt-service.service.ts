@@ -81,10 +81,12 @@ export class ScavengerHuntService {
   }
 
   cancelScavenge() {
-    this.currentScavengerHunt = undefined;
+    this.currentTask?.completeTask()
     this.currentTask = undefined;
+    this.currentScavengerHunt = undefined;
     this.currentIndex = 0;
-    this.route.navigateByUrl('/tabs');
+    this.route.navigate(['/tabs/tabHome']);
+    return;
   }
 
   getAllItems(itemType: string): number {
