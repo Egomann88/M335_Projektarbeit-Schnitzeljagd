@@ -1,12 +1,12 @@
-<ion-tabs>
+<ion-tabs *ngIf="scavangeHuntService.currentTask !== undefined">
   <ion-item color="primary" slot="bottom" style="text-align: center; font-size: 18px;">
     <ion-label>
       Verbrauchte Zeit:
-      {{ "15:34.42" }}
+      {{ scavangeHuntService.currentTask?.seconds }} Sekunden
     </ion-label>
     <div style="width: 1px; height: 100%; border-left: 2px solid #000; margin: 0 10px 0 10px;"></div>
     <ion-label style="font-size: 28px;">
-      🥩 🥔
+      🥩 {{ scavangeHuntService.currentTask?.steaks }} 🥔 {{ scavangeHuntService.currentTask?.potatoes }}
     </ion-label>
   </ion-item>
 </ion-tabs>
