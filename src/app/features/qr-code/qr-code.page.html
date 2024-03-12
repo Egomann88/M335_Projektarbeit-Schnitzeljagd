@@ -16,7 +16,7 @@
     </ion-fab-button>
   </ion-fab>
 
-  <ion-item>
+  <ion-item *ngIf="falseCode" color="danger" style="text-align: center;">
     Falscher Code, versuche es erneut
   </ion-item>
 
