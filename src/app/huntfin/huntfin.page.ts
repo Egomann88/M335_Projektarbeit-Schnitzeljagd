@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 import { ScavengerHuntService } from 'src/services/scavenger-hunt-service.service';
+import { ScavengerHunt } from 'src/models/ScavengerHunt';
 import { UserHelper } from 'src/helpers/UserHelper';
 // import { ApiService } from 'src/services/api.service';
 
@@ -10,20 +10,18 @@ import { UserHelper } from 'src/helpers/UserHelper';
   styleUrls: ['./huntfin.page.scss'],
 })
 export class HuntfinPage implements OnInit {
+  svHunt?: ScavengerHunt;
 
-  constructor(
-    private route: Router,
-    private scavengerHuntService: ScavengerHuntService,
-    // private apiService: ApiService
-  ) { }
+  constructor(public scavengerHuntService: ScavengerHuntService) { }
 
   ngOnInit() {
+    this.svHunt = this.scavengerHuntService.currentScavengerHunt;
   }
 
   submit() {
     if (this.scavengerHuntService === undefined) return;
 
-    // TODO: User is undefined
+    /* // TODO: User is undefined
     let name = UserHelper.getFullUserName(this.scavengerHuntService.currentScavengerHunt?.user!);
     let cutlets = this.scavengerHuntService.getAllItems("cutlets").toString();
     let potatoes = this.scavengerHuntService.getAllItems("potatoes").toString();
@@ -32,10 +30,25 @@ export class HuntfinPage implements OnInit {
     let time = this.scavengerHuntService.getAllItems("seconds");
     let hours = Math.floor(time / 3600);
     let minutes = Math.floor((time % 3600) / 60);
-    let seconds = (time % 3600) % 60;
+    let seconds = (time % 3600) % 60; */
 
     // this.apiService.post(name, cutlets, potatoes, hours, minutes, seconds);
 
-    this.route.navigateByUrl('/tabs');
+    this.scavengerHuntService.saveScavenge();
+  }
+
+  getRanking() {
+    let scavanegerHunts = this.scavengerHuntService.getAllScavengerHunts();
+
+    if (scavanegerHunts.length === 0) return "1.";  // first if no other hunts are available
+    scavanegerHunts.sort((a, b) => a.seconds - b.seconds);  // sort by time
+
+    // calc rank
+    for (let i = 0; i < scavanegerHunts.length; i++) {
+      let hunt = scavanegerHunts[i];
+      if (hunt.seconds > this.svHunt?.seconds!) return (i + 1) + "."; // any rank
+    }
+
+    return scavanegerHunts.length + ".";  // last if no other hunts are faster
   }
 }
