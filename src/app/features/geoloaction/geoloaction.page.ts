@@ -1,4 +1,4 @@
-import { Component, NgZone, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Task } from 'src/models/task';
 import { ScavengerHuntService } from 'src/services/scavenger-hunt-service.service';
 import { GeolocationServiceService } from 'src/services/geolocation-service.service'
@@ -12,7 +12,6 @@ export class GeoloactionPage implements OnInit {
   task?: Task;
 
   constructor(
-    private zone: NgZone,
     private scavengerHuntService: ScavengerHuntService,
     public geolocationService: GeolocationServiceService
   ) { }
@@ -24,11 +23,11 @@ export class GeoloactionPage implements OnInit {
   }
 
   async completed() {
-    await this.geolocationService.resetService()
-    await this.scavengerHuntService.completeTask()
+    await this.geolocationService.resetService();
+    await this.scavengerHuntService.completeTask();
   }
 
   async getCurrentPosition() {
-    await this.geolocationService.getCurrentPosition(false)
+    await this.geolocationService.getCurrentPosition(false);
   }
 }
