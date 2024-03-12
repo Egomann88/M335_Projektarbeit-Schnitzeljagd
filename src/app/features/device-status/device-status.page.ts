@@ -47,7 +47,7 @@ export class DeviceStatusPage implements OnInit {
 
         if (this.loadingField >= 2) {
           clearInterval(interval);
-          this.finishedTask();
+          await this.finishedTask();
         }
       } catch (err) {
         console.error(err);
@@ -80,10 +80,10 @@ export class DeviceStatusPage implements OnInit {
   }
 
   // Task is finished
-  finishedTask() {
+  async finishedTask() {
     this.loadingDone = true;
     console.log("DeviceStatusPage: Task finished!");
-    this.completed();
+    await this.completed();
   }
 
   protected readonly batteryCharging = batteryCharging;
