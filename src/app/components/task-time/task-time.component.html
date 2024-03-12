@@ -6,7 +6,7 @@
     </ion-label>
     <div style="width: 1px; height: 100%; border-left: 2px solid #000; margin: 0 10px 0 10px;"></div>
     <ion-label style="font-size: 28px;">
-      🥩 {{ scavangeHuntService.currentTask?.steaks }} 🥔 {{ scavangeHuntService.currentTask?.potatoes }}
+      🥩 {{ scavangeHuntService.currentTask?.steaks }} 🥔 {{ scavangeHuntService.currentTask.addPotato(scavangeHuntService.currentTask.timeStart!) }}
     </ion-label>
   </ion-item>
 </ion-tabs>

@@ -56,7 +56,7 @@ export class Task {
     this.isCompleted = true;
   }
 
-  addPotato(start: Date, end: Date) {
+  addPotato(start: Date, end: Date = new Date()) {
     const durationInSeconds = (end.getTime() - start.getTime()) / 1000;
 
     if (durationInSeconds > this.secondsUntilPotato) return 1;
