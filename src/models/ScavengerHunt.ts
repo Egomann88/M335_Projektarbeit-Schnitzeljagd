@@ -55,12 +55,12 @@ export class ScavengerHunt {
       ),
       new Task(
         4,
-        'Pusten',
+        'Motion',
         20,
-        'Puste ins Mikrofon!',
+        'Das Handy soll nach unten zeigen!',
         new TaskDetails(
-          'Aus der Puste?',
-          'Diese Aufgabe braucht Mikrofon Berechtigungen. Du musst in das Mikrofon deines Gerätes pusten.'
+          'Umgedrehte Welt',
+          'Richte dein Mobiltelefon so aus, dass das Handy auf dem Bildschirm nach unten zeigt.'
         )
       ),
       new Task(
