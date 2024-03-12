@@ -3,7 +3,7 @@ import { AlertService } from 'src/services/AlertService';
 import { Task } from 'src/models/task';
 import { ScavengerHuntService } from 'src/services/scavenger-hunt-service.service';
 import { Motion } from '@capacitor/motion';
-import {PluginListenerHandle} from "@capacitor/core";
+import { PluginListenerHandle } from "@capacitor/core";
 
 @Component({
   selector: 'app-sensor',
@@ -29,14 +29,15 @@ export class SensorPage implements OnInit {
       this.rotationHorizontal = Math.round(event.alpha);
 
       if (this.rotationHorizontal >= 160 && this.rotationHorizontal <= 190) {
-        if(!this.isCompleted)
+        if (!this.isCompleted) {
           this.isCompleted = true;
           await this.completed()
+        }
       }
     });
   }
 
-  async completed(){
+  async completed() {
     await this.scavengerHuntService.completeTask();
   }
 }
