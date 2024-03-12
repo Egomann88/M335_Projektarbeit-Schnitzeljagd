@@ -32,13 +32,13 @@ export class QrCodePage implements OnInit {
   async scan(): Promise<void> {
     const granted = await this.requestPermissions();
     if (!granted) {
-      this.alertService.PresentAlert('Permission denied', ['OK'], 'Please grant camera permission to use the barcode scanner.');
+      await this.alertService.PresentAlert('Permission denied', ['OK'], 'Please grant camera permission to use the barcode scanner.');
       return;
     }
     const { barcodes } = await BarcodeScanner.scan();
     this.barcodes.push(...barcodes);
 
-    this.correctBarcode();
+    await this.correctBarcode();
   }
 
   async requestPermissions(): Promise<boolean> {
@@ -46,7 +46,7 @@ export class QrCodePage implements OnInit {
     return camera === 'granted' || camera === 'limited';
   }
 
-  correctBarcode(): void {
+  async correctBarcode() {
     this.barcodes.forEach(barcode => {
       if (barcode.rawValue === this.correctBarcodeValue) this.completed();
     });
