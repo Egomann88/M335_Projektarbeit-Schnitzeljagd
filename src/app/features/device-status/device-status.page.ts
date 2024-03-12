@@ -82,7 +82,6 @@ export class DeviceStatusPage implements OnInit {
   // Task is finished
   async finishedTask() {
     this.loadingDone = true;
-    console.log("DeviceStatusPage: Task finished!");
     await this.completed();
   }
 
