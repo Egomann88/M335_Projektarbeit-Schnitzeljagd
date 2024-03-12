@@ -30,7 +30,7 @@ export class ScavengerHunt {
         1,
         'Standort',
         120,
-        'Gehe zur grossen Schreibmaschine im Zuppa Buona!',
+        'Gehe zur Strasse am Eingang vom ICT Center!',
         new TaskDetails(
           'Lost in GPSlation',
           'Du musst dich zu den angegebenen Standorten begeben. Deine Anwesenheit wird automatisch erkannt. Diese Aufgabe braucht Standort Berechtigungen und der Standort des Gerätes muss aktiviert sein.'

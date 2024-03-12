@@ -1,24 +1,27 @@
 <app-task-header [title]="task?.name!"></app-task-header>
 
 <ion-content [fullscreen]="true">
-  <ion-item>
-    Gehe zur Strasse am Eingang vom ICT Zenter
-  </ion-item>
-  <div style="width: 50%; margin: auto; margin-top: 5px">
-    Momentane Position
-    <div>Latitude: {{ geolocationService.currentLocation.latitude }}</div>
-    <div> Longitude: {{ geolocationService.currentLocation.longitude }}</div>
-    <div> Entfernung: {{ geolocationService.distance }}</div>
+  <div>
+    <ion-item>
+      <ion-label>
+        <h1 style="text-align: center; font-weight: bold;">{{ task?.mainInstruction | uppercase }}</h1>
+      </ion-label>
+    </ion-item>
+  </div>
+  <div style="width: 100%; text-align: center; margin-top: 20px">
+    <b>Position:</b>
+    <div>Breitengrad: {{ geolocationService.currentLocation.latitude.toFixed(0) }}</div>
+    <div>Längengrad: {{ geolocationService.currentLocation.longitude.toFixed(0) }}</div>
+    <div>Entfernung: {{ geolocationService.distance }}</div>
   </div>
 
-  <div style="width: 50%; margin: auto; margin-top: 5px">
+  <div style="width: 100%; text-align: center; margin-top: 20px;">
     <ion-label>Standort wird nicht akualisiert?</ion-label>
-    <br />
-    <ion-button (click)="getCurrentPosition()"> Standort neu berrechnen </ion-button>
+    <ion-button (click)="getCurrentPosition()">Standort neu berrechnen</ion-button>
   </div>
 
-  <app-dev-button (devFunction)="completed()"></app-dev-button>
   <app-details-button [details]="task?.details!"></app-details-button>
+  <app-dev-button (devFunction)="completed()"></app-dev-button>
 
   <app-task-time></app-task-time>
 </ion-content>

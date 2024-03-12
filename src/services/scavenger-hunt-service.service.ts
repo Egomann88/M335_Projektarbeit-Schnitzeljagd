@@ -5,6 +5,7 @@ import { Task } from "../models/task";
 import { Router } from "@angular/router";
 import { Haptics } from '@capacitor/haptics';
 import { ToastService } from './toast.service';
+import { StorageService } from './storage.service';
 
 @Injectable({
   providedIn: 'root'
@@ -16,7 +17,7 @@ export class ScavengerHuntService {
   currentIndex: number = 0;
   permissionsChecked: boolean = false;
 
-  constructor(private route: Router, private toastService: ToastService) { }
+  constructor(private route: Router, private toastService: ToastService, private storageService: StorageService) { }
 
   startScavenge(user?: User) {
     if (user != undefined) this.currentScavengerHunt = new ScavengerHunt(new Date(), user);
@@ -111,6 +112,7 @@ export class ScavengerHuntService {
     if (this.currentScavengerHunt == undefined) return;
 
     this.scavanegerHunts.push(this.currentScavengerHunt); // save current hunt
+    this.storageService.set("scavengerHunts", this.scavanegerHunts); // save all hunts
     this.cancelScavenge(false);  // reset current hunt
   }
 
@@ -138,7 +140,11 @@ export class ScavengerHuntService {
     return count;
   }
 
-  public getAllScavengerHunts(): ScavengerHunt[] {
-    return this.scavanegerHunts;
+  public async assignScavengerHunt() {
+    this.scavanegerHunts = await this.getAllScavengerHunts();
+  }
+
+  async getAllScavengerHunts() {
+    return await this.storageService.get("scavengerHunts") || [];
   }
 }

@@ -12,11 +12,13 @@ import { GetTimeHelper } from 'src/helpers/getTime.helper';
 })
 export class HuntfinPage implements OnInit {
   svHunt?: ScavengerHunt;
+  ranking: string = "";
 
   constructor(public scavengerHuntService: ScavengerHuntService, private apiService: ApiService) { }
 
-  ngOnInit() {
+  async ngOnInit() {
     this.svHunt = this.scavengerHuntService.currentScavengerHunt;
+    this.ranking = await this.getRanking();
   }
 
   getTime() {
@@ -43,11 +45,11 @@ export class HuntfinPage implements OnInit {
     this.scavengerHuntService.saveScavenge();
   }
 
-  getRanking() {
-    let scavanegerHunts = this.scavengerHuntService.getAllScavengerHunts();
+  async getRanking() {
+    let scavanegerHunts = await this.scavengerHuntService.getAllScavengerHunts();
 
     if (scavanegerHunts.length === 0) return "1.";  // first if no other hunts are available
-    scavanegerHunts.sort((a, b) => a.seconds - b.seconds);  // sort by time
+    scavanegerHunts.sort((a: ScavengerHunt, b: ScavengerHunt) => a.seconds - b.seconds);  // sort by time
 
     // calc rank
     for (let i = 0; i < scavanegerHunts.length; i++) {
@@ -55,6 +57,6 @@ export class HuntfinPage implements OnInit {
       if (hunt.seconds > this.svHunt?.seconds!) return (i + 1) + "."; // any rank
     }
 
-    return scavanegerHunts.length + ".";  // last if no other hunts are faster
+    return scavanegerHunts.length + 1 + ".";  // last if no other hunts are faster
   }
 }
