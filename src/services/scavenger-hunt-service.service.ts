@@ -21,7 +21,8 @@ export class ScavengerHuntService {
     if (user != undefined) this.currentScavengerHunt = new ScavengerHunt(new Date(), user);
 
     if (!this.permissionsChecked) {
-      // this.route.navigateByUrl("/permissions")
+      this.route.navigateByUrl("/permissions")
+      return;
     }
 
     if (this.currentScavengerHunt == undefined) return;
