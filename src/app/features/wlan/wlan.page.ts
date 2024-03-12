@@ -26,6 +26,9 @@ export class WlanPage implements OnInit {
         this.zone.run(() => {
           this.networkStatus = status.connected;
           this.changed = true;
+
+          if (this.changed && (this.joinedWith == this.networkStatus)) this.finishedTask();
+
         })
       } catch (err) {
         console.error(err);
@@ -59,7 +62,7 @@ export class WlanPage implements OnInit {
   }
 
   // Placeholder for what should happen after the task is finished
-  finishedTask() {
-    console.log("Task finished");
+  async finishedTask() {
+    await this.completed();
   }
 }
