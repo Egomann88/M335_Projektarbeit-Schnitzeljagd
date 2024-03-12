@@ -9,13 +9,15 @@
       {{ geolocationService.metresTraveled }} / {{ geolocationService.targetMetres }}
     </div>
   </div>
-  <app-dev-button (devFunction)="completed()"></app-dev-button>
-  <app-details-button [details]="task?.details!"></app-details-button>
 
   <div style="width: 50%; margin: auto; margin-top: 5px">
     <ion-label>Standort wird nicht akualisiert?</ion-label>
     <br />
     <ion-button (click)="getCurrentPosition()"> Standort neu berrechnen </ion-button>
   </div>
+
+  <app-dev-button (devFunction)="completed()"></app-dev-button>
+  <app-details-button [details]="task?.details!"></app-details-button>
+
   <app-task-time></app-task-time>
 </ion-content>
