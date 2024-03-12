@@ -129,7 +129,7 @@ export class ScavengerHuntService {
             count += task.potatoes;
             break;
           case 'seconds':
-            count += task.timeEnd!.getSeconds() - task.timeStart!.getSeconds();
+            count += Math.round((task.timeEnd!.getTime() - task.timeStart!.getTime()) / 1000);
             break;
         }
       }
