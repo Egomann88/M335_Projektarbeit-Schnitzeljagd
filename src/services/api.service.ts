@@ -23,7 +23,8 @@ export class ApiService {
       formData.append('entry.1079317865', potato);
       formData.append('entry.985590604', `${hours}:${minutes}:${seconds} `);
 
-      this.http.post(url, formData, { headers });
+      const respose = this.http.post(url, formData, { headers });
+      console.log(respose);
     } catch (e) {
       console.error(e);
       this.alertService.openErrorAlert("Beim Senden an das Backend (Google Tabelle) ist ein Fehler aufgetreten.");
