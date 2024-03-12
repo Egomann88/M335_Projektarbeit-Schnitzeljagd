@@ -17,17 +17,13 @@ export class ApiService {
       if (url === undefined) url = this.url;
       if (headers === undefined) headers = this.headers;
 
-      console.log("FEHLERRRRRRRRR " + name)
-
       const body =
         `entry.1860183935=${name}` + // Name
         `&entry.564282981=${schnitzel}` + // Schnitzel
         `&entry.1079317865=${potato}` + // Potatoes
         `&entry.985590604=${hours}:${minutes}:${seconds}`; // Duration
 
-      this.http.post(url, body, {headers}).subscribe((data) => {
-        console.log(data);
-      });
+      this.http.post(url, body, {headers}).subscribe();
     } catch (e) {
       console.error(e);
       this.alertService.openErrorAlert("Beim Senden an das Backend (Google Tabelle) ist ein Fehler aufgetreten.");

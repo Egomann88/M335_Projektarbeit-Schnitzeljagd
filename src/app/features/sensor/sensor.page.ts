@@ -27,10 +27,8 @@ export class SensorPage implements OnInit {
 
       // x ist die horizontale Drehung
       this.rotationHorizontal = Math.round(event.alpha);
-      console.log(this.rotationHorizontal);
 
       if (this.rotationHorizontal >= 160 && this.rotationHorizontal <= 190) {
-        console.log("Task completed");
         if(!this.isCompleted)
           this.isCompleted = true;
           await this.completed()

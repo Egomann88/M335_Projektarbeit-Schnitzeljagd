@@ -1,15 +1,20 @@
 <app-task-header [title]="task?.name!"></app-task-header>
 
 <ion-content [fullscreen]="true">
+  <div style="padding: 0 20px 0 20px;">
+    <ion-item>
+      <ion-label>
+        <h1 style="text-align: center; font-weight: bold;">{{ task?.mainInstruction | uppercase }}</h1>
+      </ion-label>
+    </ion-item>
+  </div>
   <ion-item>
     <ion-title>
-      <ion-icon name="phone-portrait-outline" [color]="isCompleted ? 'success' : ''"
+      <ion-icon style="padding: 20px 0 20px 0;" name="phone-portrait-outline" [color]="isCompleted ? 'success' : ''"
         [style.transform]="'rotate(' + (-rotationHorizontal) + 'deg)'"></ion-icon>
     </ion-title>
   </ion-item>
+  <app-details-button [details]="task?.details!"></app-details-button>
   <app-dev-button (devFunction)="completed()"></app-dev-button>
-  <ion-item>
-    <app-details-button [details]="task?.details!"></app-details-button>
-  </ion-item>
   <app-task-time></app-task-time>
 </ion-content>

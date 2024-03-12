@@ -44,7 +44,7 @@ export class PermissionsPage implements OnInit {
         this.geoError = "Die Berechtigung wurde verweigert. Bitte erlaube den Zugriff auf deinen Standort.";
       }
     } catch (e) {
-      console.log(e);
+      console.error(e);
       this.geoError = "Überprüfe ob deine Standortdienste aktiviert sind.";
     }
   }
@@ -58,7 +58,7 @@ export class PermissionsPage implements OnInit {
         this.cameraError = "Die Berechtigung wurde verweigert. Bitte erlaube den Zugriff auf die Kamera.";
       }
     } catch (e) {
-      console.log(e);
+      console.error(e);
       this.cameraError = "Es ist ein Fehler aufgetreten. Bitte versuche es erneut."
     }
   }

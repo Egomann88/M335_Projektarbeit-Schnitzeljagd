@@ -35,12 +35,10 @@ export class TabHomePage {
 
   async prepareScavengerHunt() {
     if (!this.userValid) {
-      console.log("User not valid -> prepare alert");
       await this.prepareAlert();
       return;
     }
 
-    console.log("User is valid");
     this.startNewScavengerHunt();
   }
 
