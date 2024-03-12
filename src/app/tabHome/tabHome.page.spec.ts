@@ -2,6 +2,8 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { IonicModule } from '@ionic/angular';
 
 import { TabHomePage } from './tabHome.page';
+import {StorageService} from "../../services/storage.service";
+import {MockStorageService} from "../../mocks/MockStorageService";
 
 describe('TabHomePage', () => {
   let component: TabHomePage;
@@ -10,7 +12,10 @@ describe('TabHomePage', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [TabHomePage],
-      imports: [IonicModule.forRoot()]
+      imports: [IonicModule.forRoot()],
+      providers: [
+        {provide: StorageService, useClass: MockStorageService}
+      ]
     }).compileComponents();
 
     fixture = TestBed.createComponent(TabHomePage);

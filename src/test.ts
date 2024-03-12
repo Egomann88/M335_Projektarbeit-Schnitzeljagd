@@ -15,11 +15,3 @@ getTestBed().initTestEnvironment(
   [BrowserDynamicTestingModule, HttpClientTestingModule],
   platformBrowserDynamicTesting(),
 );
-
-getTestBed().configureTestingModule(
-  {
-    providers: [
-      {provide: StorageService, useClass: MockStorageService} // Provide the mock class
-    ]
-  } // Provide the mock class
-)
