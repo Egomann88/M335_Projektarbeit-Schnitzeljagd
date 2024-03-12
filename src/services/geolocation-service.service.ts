@@ -48,13 +48,18 @@ export class GeolocationServiceService {
     this.watchId = "";
   }
 
-  public async getCurrentPosition() {
+  public async getCurrentPosition(task: any) {
     const coordinates = await Geolocation.getCurrentPosition();
     // for distance
     try{
       this.updateLastLocation(coordinates.coords.latitude, coordinates.coords.longitude)
       this.calculateMetres()
       this.metresReached = this.checkMetres()
+
+      if (this.metresReached){
+        task.completeTask()
+      }
+
     }catch (e: any){
       console.error("Cannot calculate metres traveled")
     }
@@ -66,7 +71,7 @@ export class GeolocationServiceService {
     this.distanceReached = this.checkDistance()
   };
 
-  public async watchPosition() {
+  public async watchPosition(task: any) {
     this.watchId = await Geolocation.watchPosition(this.options, (position, err) => {
       if (err) {
         console.error('Error watching position:', err);
@@ -78,6 +83,11 @@ export class GeolocationServiceService {
               this.updateLastLocation(position.coords.latitude, position.coords.longitude)
               this.calculateMetres()
               this.metresReached = this.checkMetres()
+
+              if (this.metresReached){
+                task.completeTask()
+              }
+
             }catch (e: any){
               console.error("Cannot calculate metres traveled")
             }
