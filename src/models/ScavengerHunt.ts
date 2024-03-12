@@ -15,6 +15,9 @@ export class ScavengerHunt {
   startDate: Date;
   user: User;
   tasks: Task[];
+  cutlets: number = 0;
+  potatoes: number = 0;
+  seconds: number = 0;
 
   constructor(
     date: Date,

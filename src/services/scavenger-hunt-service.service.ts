@@ -39,6 +39,7 @@ export class ScavengerHuntService {
     if (this.currentTask == undefined || this.currentScavengerHunt == undefined) return;
     await Haptics.vibrate();
     this.currentTask.completeTask();  // stops timer
+    this.updateStats(); // update cutlets, potatoes and seconds
     this.toastService.presentToast("Aufgabe abgeschlossen", "success", 800);
 
     setTimeout(() => {
@@ -90,7 +91,17 @@ export class ScavengerHuntService {
     return;
   }
 
+  updateStats() {
+    if (this.currentScavengerHunt == undefined) return;
+
+    this.currentScavengerHunt.cutlets = this.getAllItems("cutlets");
+    this.currentScavengerHunt.potatoes = this.getAllItems("potatoes");
+    this.currentScavengerHunt.seconds = this.getAllItems("seconds");
+  }
+
   saveScavenge() {
+    this.updateStats();
+
     if (this.currentScavengerHunt == undefined) return;
 
     this.scavanegerHunts.push(this.currentScavengerHunt); // save current hunt
