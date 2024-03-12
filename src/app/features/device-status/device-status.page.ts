@@ -42,7 +42,7 @@ export class DeviceStatusPage implements OnInit {
         if (this.chargingLevel !== undefined) this.chargingLevel = this.chargingLevel * 100;
 
         if (info.isCharging) {
-          this.loadingField += 0.05;
+          this.loadingField += 0.15;
         }
 
         if (this.loadingField >= 2) {
@@ -53,7 +53,7 @@ export class DeviceStatusPage implements OnInit {
         console.error(err);
         clearInterval(interval);
       }
-    }, 500);
+    }, 200);
   }
 
   // Sets the color of the loading bar using a float
@@ -75,7 +75,7 @@ export class DeviceStatusPage implements OnInit {
   getLoadingText() {
     if (this.loadingDone) return 'Ladevorgang abgeschlossen';
 
-    if (this.loadingStatus) return 'Ladevorgang läuft...';
+    if (this.loadingStatus) return 'Ladevorgang läuft. Bitte warten...';
     else return 'Kein Ladegerät angeschlossen';
   }
 

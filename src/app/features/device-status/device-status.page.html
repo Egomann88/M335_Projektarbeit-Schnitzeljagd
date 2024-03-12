@@ -10,19 +10,18 @@
       <div style="position: relative;">
         <ion-icon name="battery-dead-outline" [color]="getColor()"></ion-icon>
         <ion-item [color]="getColor()" *ngIf="loadingField >= 0.5" class="opacityAnimation"
-          style="width: 14px; height: 34px; position: absolute; top: 31px; left: 153px; border-radius: 9999rem;">
+          style="width: 14px; height: 34px; position: absolute; top: 31px; left: 126px; border-radius: 9999rem;">
         </ion-item>
         <ion-item [color]="getColor()" *ngIf="loadingField >= 1" class="opacityAnimation"
-          style="width: 14px; height: 34px; position: absolute; top: 31px; left: 170px; border-radius: 9999rem;">
+          style="width: 14px; height: 34px; position: absolute; top: 31px; left: 143px; border-radius: 9999rem;">
+        </ion-item>
+        <ion-item [color]="getColor()" *ngIf="loadingField >= 1.3" class="opacityAnimation"
+          style="width: 14px; height: 34px; position: absolute; top: 31px; left: 160px; border-radius: 9999rem;">
         </ion-item>
         <ion-item [color]="getColor()" *ngIf="loadingField >= 1.5" class="opacityAnimation"
-          style="width: 14px; height: 34px; position: absolute; top: 31px; left: 187px; border-radius: 9999rem;">
-        </ion-item>
-        <ion-item [color]="getColor()" *ngIf="loadingField >= 2" class="opacityAnimation"
-          style="width: 14px; height: 34px; position: absolute; top: 31px; left: 204px; border-radius: 9999rem;">
+          style="width: 14px; height: 34px; position: absolute; top: 31px; left: 177px; border-radius: 9999rem;">
         </ion-item>
       </div>
-      <!--<ion-icon name="square-outline" *ngFor="let i of [1,2,3,4,5]" [color]="getColor(i)" size="large"></ion-icon>-->
     </ion-label>
   </ion-item>
   <app-dev-button (devFunction)="completed()"></app-dev-button>
