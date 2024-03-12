@@ -31,9 +31,10 @@ export class SensorPage implements OnInit {
 
       if (this.rotationHorizontal >= 160 && this.rotationHorizontal <= 190) {
         console.log("Task completed");
-        if(!this.isCompleted)
+        if(!this.isCompleted){
           this.isCompleted = true;
           await this.completed()
+        }
       }
     });
   }
