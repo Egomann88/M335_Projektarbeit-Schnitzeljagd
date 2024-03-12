@@ -40,7 +40,7 @@ export class ScavengerHunt {
         2,
         'Strecke laufen',
         80,
-        'Laufe 20m!',
+        'Laufe 100 Meter!',
         new TaskDetails(
           'Marathon oder Snickers?',
           'Du musst die angegebene Strecke laufen, um die Aufgabe zu erfüllen. Diese Aufgabe braucht Standort Berechtigungen und der Standort des Gerätes muss aktiviert sein.'
