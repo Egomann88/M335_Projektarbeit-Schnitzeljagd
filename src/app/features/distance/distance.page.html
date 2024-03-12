@@ -1,23 +1,22 @@
 <app-task-header [title]="task?.name!"></app-task-header>
 
 <ion-content [fullscreen]="true">
-  <div style="width: 50%; margin: auto; margin-top: 5px">
-    <div>
-      Laufe {{ geolocationService.targetMetres }} Meter!
-    </div>
-    <div>
+  <div style="width: 100%; text-align: center;">
+    <h1>
+      {{ task?.mainInstruction | uppercase }}
+    </h1>
+    <h1>
       {{ geolocationService.metresTraveled }} / {{ geolocationService.targetMetres }}
-    </div>
+    </h1>
   </div>
 
-  <div style="width: 50%; margin: auto; margin-top: 5px">
+  <div style="width: 100%; text-align: center; margin-top: 20px;">
     <ion-label>Standort wird nicht akualisiert?</ion-label>
-    <br />
-    <ion-button (click)="getCurrentPosition()"> Standort neu berrechnen </ion-button>
+    <ion-button (click)="getCurrentPosition()">Standort neu berrechnen</ion-button>
   </div>
 
-  <app-dev-button (devFunction)="completed()"></app-dev-button>
   <app-details-button [details]="task?.details!"></app-details-button>
+  <app-dev-button (devFunction)="completed()"></app-dev-button>
 
   <app-task-time></app-task-time>
 </ion-content>
