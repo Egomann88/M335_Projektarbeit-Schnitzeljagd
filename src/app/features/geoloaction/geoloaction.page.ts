@@ -24,6 +24,7 @@ export class GeoloactionPage implements OnInit {
   }
 
   async completed() {
+    await this.geolocationService.resetService()
     await this.scavengerHuntService.completeTask()
   }
 
