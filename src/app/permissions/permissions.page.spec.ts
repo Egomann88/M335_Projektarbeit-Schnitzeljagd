@@ -5,7 +5,7 @@ describe('PermissionsPage', () => {
   let component: PermissionsPage;
   let fixture: ComponentFixture<PermissionsPage>;
 
-  beforeEach(async(() => {
+  beforeEach((() => {
     fixture = TestBed.createComponent(PermissionsPage);
     component = fixture.componentInstance;
     fixture.detectChanges();

@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { ScavengerHuntServiceService } from './scavenger-hunt-service.service';
+import { ScavengerHuntService } from './scavenger-hunt-service.service';
 
 describe('ScavengerHuntServiceService', () => {
-  let service: ScavengerHuntServiceService;
+  let service: ScavengerHuntService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(ScavengerHuntServiceService);
+    service = TestBed.inject(ScavengerHuntService);
   });
 
   it('should be created', () => {
