@@ -48,7 +48,7 @@ export class GeolocationServiceService {
     this.watchId = "";
   }
 
-  public async getCurrentPosition(task: any) {
+  public async getCurrentPosition(complFunc: Function) {
     const coordinates = await Geolocation.getCurrentPosition();
     // for distance
     try{
@@ -57,7 +57,7 @@ export class GeolocationServiceService {
       this.metresReached = this.checkMetres()
 
       if (this.metresReached){
-        task.completeTask()
+        complFunc()
       }
 
     }catch (e: any){
@@ -71,7 +71,7 @@ export class GeolocationServiceService {
     this.distanceReached = this.checkDistance()
   };
 
-  public async watchPosition(task: any) {
+  public async watchPosition(complFunc: Function) {
     this.watchId = await Geolocation.watchPosition(this.options, (position, err) => {
       if (err) {
         console.error('Error watching position:', err);
@@ -85,7 +85,7 @@ export class GeolocationServiceService {
               this.metresReached = this.checkMetres()
 
               if (this.metresReached){
-                task.completeTask()
+                complFunc()
               }
 
             }catch (e: any){
