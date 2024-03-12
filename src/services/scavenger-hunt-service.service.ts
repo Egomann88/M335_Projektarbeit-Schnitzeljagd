@@ -82,13 +82,19 @@ export class ScavengerHuntService {
     return isCompleted;
   }
 
-  cancelScavenge() {
+  cancelScavenge(showToast: boolean = true) {
+    let timeout = showToast ? 800 : 0;
+
     this.currentTask?.completeTask()
     this.currentTask = undefined;
     this.currentScavengerHunt = undefined;
     this.currentIndex = 0;
-    this.route.navigate(['/tabs/tabHome']);
-    return;
+
+
+    setTimeout(() => {
+      if (showToast) this.toastService.presentToast("Schnitzeljagd abgebrochen", "danger", 800);
+      this.route.navigate(['/tabs/tabHome']);
+    }, timeout);
   }
 
   updateStats() {
@@ -105,7 +111,7 @@ export class ScavengerHuntService {
     if (this.currentScavengerHunt == undefined) return;
 
     this.scavanegerHunts.push(this.currentScavengerHunt); // save current hunt
-    this.cancelScavenge();  // reset current hunt
+    this.cancelScavenge(false);  // reset current hunt
   }
 
   getAllItems(itemType: string): number {
