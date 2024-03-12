@@ -30,47 +30,17 @@
       <ion-button color="primary" (click)="saveUser()">Speichern</ion-button>
     </ion-item>
   </ion-toolbar>
-  <ion-list>
-    <ion-item style="display: flex; align-items: center;">
-      <ion-text>
-        <h3>Test Links</h3>
-      </ion-text>
-      <ion-label style="margin: 8px 0 0 10px;">
-        <ion-icon color="dark" size="large" name="code-working-outline"></ion-icon>
-      </ion-label>
+
+  <div style="display: flex; align-items: center; flex-wrap: wrap; padding: 0 20px 0 20px;">
+    <ion-text>
+      <h3>Sonstiges</h3>
+    </ion-text>
+    <ion-label style="margin: 8px 0 0 10px;">
+      <ion-icon color="dark" size="large" name="code-working-outline"></ion-icon>
+    </ion-label>
+
+    <ion-item style="width: 100%;">
+      <a href="/permissions">Berechtigungen</a>
     </ion-item>
-    <ion-item>
-      <ion-button fill="clear" (click)="DevInitializeTask(0)">
-        Geolocation
-      </ion-button>
-    </ion-item>
-    <ion-item>
-      <ion-button fill="clear" (click)="DevInitializeTask(1)">
-        Distance
-      </ion-button>
-    </ion-item>
-    <ion-item>
-      <ion-button fill="clear" (click)="DevInitializeTask(2)">
-        Kamera
-      </ion-button>
-    </ion-item>
-    <ion-item>
-      <ion-button fill="clear" (click)="DevInitializeTask(3)">
-        Sensor
-      </ion-button>
-    </ion-item>
-    <ion-item>
-      <ion-button fill="clear" (click)="DevInitializeTask(4)">
-        Device Status
-      </ion-button>
-    </ion-item>
-    <ion-item>
-      <ion-button fill="clear" (click)="DevInitializeTask(5)">
-        WLAN
-      </ion-button>
-    </ion-item>
-    <ion-item>
-      <a href="/permissions">Permissions</a>
-    </ion-item>
-  </ion-list>
+  </div>
 </ion-content>
